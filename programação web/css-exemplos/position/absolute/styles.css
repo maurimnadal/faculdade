@@ -1,0 +1,16 @@
+.box-parent{
+    position: relative;
+    margin: 20px;
+    padding: 20px;
+    background-color: rgba(32, 32, 255, 0.562);
+    border: 2px solid black;
+}
+
+.absolute{
+    padding: 10px;
+    position: absolute;
+    top: 55px;
+    left: 50px;
+    background-color: yellow;
+    border: 1px solid black;
+}

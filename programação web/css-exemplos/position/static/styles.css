@@ -1,0 +1,11 @@
+*{
+    margin: 0px;
+}
+
+.static{
+    position: static;
+    margin: 10px;
+    padding: 10px;
+    background-color: rgba(255, 0, 0, 0.596);
+    border: 2px solid black;
+}

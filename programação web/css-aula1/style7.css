@@ -1,0 +1,16 @@
+p::before {
+    content: "Nota: ";
+    color: red;
+    font-weight: bold;
+}
+
+p::after {
+    content: " (leia com atenção)";
+    color: blue;
+    font-style: italic;
+}
+
+p::first-letter {
+    font-size: 200%;
+    color: green;
+}

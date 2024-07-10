@@ -1,0 +1,20 @@
+[data-info] {
+    background-color: yellow;
+}
+
+input[type="text"] {
+    border: 1px solid gray;
+}
+
+div[class~="example"] {
+    color: red;
+}
+
+a[href^="https"] {
+    color: green;
+}
+
+img[src$=".jpg"] {
+    border: 2px solid black;
+    width: 400px;
+}

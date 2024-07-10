@@ -1,0 +1,17 @@
+.content{
+    position: fixed;
+    height: 200vh;
+    margin: 20px;
+    padding: 20px;
+    background-color: lightgray;
+
+}
+
+.box-fixed{
+    padding: 20px;
+    position: absolute;
+    right: 20px;
+    top: 100vh;
+    background-color: lightblue;
+    border: 2px solid black;
+}

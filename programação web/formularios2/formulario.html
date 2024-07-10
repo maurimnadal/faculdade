@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário HTML</title>
+</head>
+
+<body>
+    <form action="submit.php" method="post">
+        <label for="name">Nome:</label>
+        <input type="text" id="name" name="name" required><br><br>
+        <label for="age">Idade</label>
+        <input type="number" min="1" max="130" id="age" name="age" required><br><br>
+        <label for="sex">Sexo:</label>
+        <input type="radio" id="male" name="sex">
+        <label for="male">M</label>
+        <input type="radio" id="female" name="sex" >
+        <label for="female">F</label><br><br>
+        <label for="state">Estado</label>
+        <select name="state" id="state" required>
+            <option value="">Selecione uma opção</option>
+            <option value="rs">Rio Grande do Sul</option>
+            <option value="sc">Santa Catarina</option>
+            <option value="pr">Paraná</option>
+        </select><br><br>
+        <label for="receive">Quer Receber News?</label>
+        <input type="checkbox" id="receive" name="receive" required><br><br>
+        <input type="submit" value="Enviar">
+    </form>
+ 
+</body>
+
+</html>

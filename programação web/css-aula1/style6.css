@@ -1,0 +1,25 @@
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    background-color: lightgray;
+    padding: 10px;
+    margin-bottom: 5px;
+}
+
+li:hover {
+    background-color: lightblue;
+    /* Muda a cor de fundo ao passar o mouse */
+}
+
+li:nth-child(odd) {
+    color: red;
+    /* Cor vermelha para itens ímpares */
+}
+
+li:last-child {
+    font-weight: bold;
+    /* Negrito para o último item */
+}
