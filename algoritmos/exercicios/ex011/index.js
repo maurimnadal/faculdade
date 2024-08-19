@@ -57,18 +57,3 @@ const produtos = [
 ];
 
 //9
-const sla = vetor.every(valor => valor % 2 === 0)
-console.log(sla)
-
-const impar = vetor.some(valor => valor % 2 === 1)
-console.log(impar)
-
-//10
-const batata = vetor.filter(valor => valor % 2 === 0).reduce((acumulador, valor) => acumulador + valor, 0)
-console.log(batata/vetor.length)
-
-a = [1, 2, 4, 10]
-const batata1 = a.filter(valor => valor % 2 === 0)
-console.log(batata1)
-const batata2 = batata1.reduce((acumulador, valor) => acumulador + valor, 0)
-console.log(batata2 / batata1.length)
