@@ -52,24 +52,24 @@ class Stack{
 }
 
 
-const pilha = new Stack
+const pilha = new Stack();
 
-const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-
-for (let i = 0; i < array.length; i++){
-    if(array[i] % 2 === 0){
-        console.log(pilha.push(array[i]))
-    }
-    if(array[i] % 2 === 1){
-        pilha.pop()
-    }
-    if(pilha.isEmpty()){
-        console.log("A pilha está vazia")
+for (let i = 0; i < array.length; i++) {
+    if (array[i] % 2 === 0) {  
+        pilha.push(array[i]);  
+    } else {  
+        if (pilha.isEmpty()) {
+            console.log("A pilha está vazia");
+        } else pilha.pop();     
     }
 }
-if(pilha.length > 0){
-    pilha.clear()
-    console.log('show')
+
+
+if (pilha.size() > 0) {
+    console.log("Elementos restantes na pilha:");
+    while (pilha.size() > 0) {
+        console.log(pilha.pop());
+    }
 }
-console.log(pilha)
