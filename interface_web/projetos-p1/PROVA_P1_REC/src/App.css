@@ -1,0 +1,61 @@
+#root {
+  width: 200vh;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  background-color: lightgray;
+  color: black;
+}
+
+.subtitle{
+  margin-bottom: 50px;
+  font-weight: normal;
+}
+
+.subscribe_title{
+  font-size: 30px;
+}
+
+input{
+  padding: 10px;
+  width: 400px;
+  border-radius: 5px;
+  background-color: white;
+  border: 1px solid gray;
+  color: black;
+  font-family: inherit;
+  font-size: 14px;
+}
+
+button{
+  padding: 5px;
+  margin: 10px;
+  background-color: green;
+  width: 400px;
+}
+
+.feedback{
+  color: red;
+  font-weight: bold;
+}
+
+.palestra_title{
+  text-align: left;
+  color: rgb(73, 73, 73);
+}
+
+.palestra_list{
+  text-align: left;
+  background-color: white;
+  padding: 10px;
+  margin-top: 10px;
+  margin-left: -40px;
+  border-radius: 10px;
+  list-style-type: none;
+}
+
+.salchipao{
+  background-color: rgba(255, 0, 0, 0.301);
+  padding: 10px;
+  border-radius: 10px;
+}
