@@ -1,19 +1,7 @@
 class Node {
-    constructor(node, element) {
-        this._next = node;
-        this._element = element;
-    }
-
-    setNext(node) {
-        this._next = node;
-    }
-
-    getNextElement() {
-        return this._next;
-    }
-
-    getElement() {
-        return this._element
+    constructor(element) {
+        this.element = element;
+        this.next = undefined;
     }
 }
 
