@@ -41,7 +41,7 @@ class DoublyLinkedList {
 
     insert(element, position) {
         if (position < 0 || position > this._length) {
-            return; // Não insere se a posição for inválida
+            return; 
         }
         if (position === 0) {
             this.addAtBeginning(element);
@@ -61,7 +61,7 @@ class DoublyLinkedList {
 
     getElementAt(index) {
         if (index < 0 || index >= this._length) {
-            return undefined; // Índice fora dos limites
+            return undefined; 
         }
         let currentNode = this._head;
         for (let i = 0; i < index; i++) {
@@ -75,23 +75,23 @@ class DoublyLinkedList {
         while (currentNode) {
             if (currentNode.getElement() === element) {
                 this.removeNode(currentNode);
-                return true; // Retorna verdadeiro se o elemento foi removido
+                return true; 
             }
             currentNode = currentNode.getNext();
         }
-        return false; // Retorna falso se o elemento não foi encontrado
+        return false; 
     }
 
     removeNode(node) {
         if (node.getPrevious()) {
             node.getPrevious().setNext(node.getNext());
         } else {
-            this._head = node.getNext(); // O nó é o primeiro
+            this._head = node.getNext(); 
         }
         if (node.getNext()) {
             node.getNext().setPrevious(node.getPrevious());
         } else {
-            this._last = node.getPrevious(); // O nó é o último
+            this._last = node.getPrevious(); 
         }
         this._length--;
     }
@@ -100,31 +100,31 @@ class DoublyLinkedList {
         let currentNode = this._head;
         for (let i = 0; i < this._length; i++) {
             if (currentNode.getElement() === element) {
-                return i; // Retorna o índice do elemento
+                return i; 
             }
             currentNode = currentNode.getNext();
         }
-        return -1; // Retorna -1 se o elemento não foi encontrado
+        return -1; 
     }
 
     removeAt(position) {
         if (position < 0 || position >= this._length) {
-            return undefined; // Posição inválida
+            return undefined; 
         }
         let currentNode = this._head;
         for (let i = 0; i < position; i++) {
             currentNode = currentNode.getNext();
         }
         this.removeNode(currentNode);
-        return currentNode.getElement(); // Retorna o elemento removido
+        return currentNode.getElement(); 
     }
 
     isEmpty() {
-        return this._length === 0; // Retorna verdadeiro se a lista estiver vazia
+        return this._length === 0; 
     }
 
     size() {
-        return this._length; // Retorna o tamanho da lista
+        return this._length; 
     }
 
     toString() {
