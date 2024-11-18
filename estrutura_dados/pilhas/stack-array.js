@@ -28,7 +28,7 @@ class Stack {
     }
 }
 
-const pilha = new Stack(); //criando um objeto do tipo pilha
+const pilha = new Stack();
 pilha.push(1)
 pilha.push(2)
 pilha.push(3)
