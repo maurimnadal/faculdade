@@ -1,31 +1,24 @@
-import React, { useEffect, useState } from 'react';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages/home';
+import Products from './pages/products';
+import ProductDetails from './pages/productDetails';
+import AddProduct from './pages/addProduct';
+import EditProduct from './pages/editProduct';
+import './app.css'
 
 function App() {
-  const [products, setProducts] = useState([]);
-
-  // Função para buscar os produtos da Fake Store API
-  useEffect(() => {
-    fetch('https://fakestoreapi.com/products')
-      .then((res) => res.json())
-      .then((data) => setProducts(data)) // Armazena os dados no estado
-      .catch((error) => console.error('Erro ao carregar os produtos:', error));
-  }, []); // O array vazio garante que a requisição seja feita apenas uma vez
-
   return (
-    <div className="App">
-      <h1>Lista de Produtos</h1>
-      <div className="product-list">
-        {products.map((product) => (
-          <div className="product" key={product.id}>
-            <img src={product.image} alt={product.title} />
-            <h3>{product.title}</h3>
-            <p>R$ {product.price.toFixed(2)}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/products" element={<Products />} />
+      <Route path="/products/:id" element={<ProductDetails />} />
+      <Route path="/add-product" element={<AddProduct />} />
+      <Route path="/products/:id/edit" element={<EditProduct />} />
+    </Routes>
+
+  )
 }
 
 export default App;
