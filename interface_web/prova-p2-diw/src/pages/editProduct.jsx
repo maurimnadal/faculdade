@@ -33,11 +33,16 @@ function EditProduct() {
             <main>
             <h2>Editar Produto</h2>
             <form onSubmit={handleSubmit} >
-                <input className="form_item" name="title" value={product.title} onChange={handleChange} required /><br />
-                <input className="form_item" name="price" value={product.price} onChange={handleChange} required /><br />
-                <textarea className="form_item" name="description" value={product.description} onChange={handleChange} required /><br />
-                <input className="form_item" name="image" value={product.image} onChange={handleChange} required /><br />
-                <input className="form_item" name="category" value={product.category} onChange={handleChange} required /><br />
+                <label>Nome</label>
+                <input className="form_item_edit" name="title" value={product.title} onChange={handleChange} required /><br />
+                <label htmlFor="">Preço</label>
+                <input className="form_item_edit" name="price" value={product.price} onChange={handleChange} required /><br />
+                <label htmlFor="">Descrição</label>
+                <textarea className="form_item_edit" name="description" value={product.description} onChange={handleChange} required /><br />
+                <label htmlFor="">URL da imagem</label>
+                <input className="form_item_edit" name="image" value={product.image} onChange={handleChange} required /><br />
+                <label htmlFor="">Categoria</label>
+                <input className="form_item_edit" name="category" value={product.category} onChange={handleChange} required /><br />
                 <button className="botao" type="submit">Salvar Alterações</button>
             </form>
             </main>

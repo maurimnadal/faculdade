@@ -8,20 +8,46 @@ import Footer from '../components/footer';
 function ProductDetails() {
     const { id } = useParams();
     const [product, setProduct] = useState("");
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        setLoading(true);
         axios.get(`https://fakestoreapi.com/products/${id}`)
             .then(response => setProduct(response.data))
+            .finally(() => setLoading(false));
     }, [id]);
+
+    if (loading) {
+        return (
+            <div className='loading_div'>
+                <p className='loading_text'>Carregando...</p>
+            </div>
+        );
+    }
 
     return (
         <div>
             <Header />
-            <h2>{product.title}</h2>
-            <img src={product.image} alt={product.title} />
-            <p>Descrição: {product.description}</p>
-            <p>Categoria: {product.category}</p>
-            <p>Preço: R$ {product.price}</p>
+            <main>
+                <h2 className='product_info'>{product.title}</h2>
+                <img className='image_product' src={product.image} alt={product.title} />
+                <table className="product_table">
+                    <tbody>
+                        <tr>
+                            <th>Descrição</th>
+                            <td>{product.description}</td>
+                        </tr>
+                        <tr>
+                            <th>Categoria</th>
+                            <td>{product.category}</td>
+                        </tr>
+                        <tr>
+                            <th>Preço</th>
+                            <td>R$ {product.price}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </main>
             < Footer />
         </div>
     );

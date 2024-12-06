@@ -32,12 +32,12 @@ function AddProduct() {
             <main>
                 <h2>Insira as informações do produto</h2>
                 <form onSubmit={handleSubmit} >
-                    <input className='add_product_form_item' name="title" placeholder="Título" value={product.title} onChange={handleChange} required /><br />
-                    <input className='add_product_form_item' name="price" placeholder="Preço" value={product.price} onChange={handleChange} required /><br />
-                    <textarea className='add_product_form_item' name="description" placeholder="Descrição" value={product.description} onChange={handleChange} required /><br />
-                    <input className='add_product_form_item' name="image" placeholder="URL da Imagem" value={product.image} onChange={handleChange} required /><br />
-                    <input className='add_product_form_item' name="category" placeholder="Categoria" value={product.category} onChange={handleChange} required /><br />
-                    <button className="botao" type="submit">Adicionar Produto</button>
+                    <input className='form_item_add' name="title" placeholder="Título" value={product.title} onChange={handleChange} required />
+                    <input className='form_item_add' name="price" placeholder="Preço" value={product.price} onChange={handleChange} required />
+                    <textarea className='form_item_add' name="description" placeholder="Descrição" value={product.description} onChange={handleChange} required />
+                    <input className='form_item_add' name="image" placeholder="URL da Imagem" value={product.image} onChange={handleChange} required />
+                    <input className='form_item_add' name="category" placeholder="Categoria" value={product.category} onChange={handleChange} required />
+                    <button type="submit">Adicionar Produto</button>
                 </form>
             </main>
             < Footer />

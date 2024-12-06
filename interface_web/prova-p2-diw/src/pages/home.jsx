@@ -6,7 +6,7 @@ function Home() {
     return (
         <>
             <Header />
-            <main>
+            <main className='home'>
                 <h2>Bem-vindo à Admin Store!</h2>
                 <p>Gerencie seus produtos de maneira fácil e prática.</p>
             </main>

@@ -5,52 +5,63 @@
   text-align: center;
 }
 
-body{
-  background-color: white;
+body {
+  background-color: rgb(49, 4, 100);
   color: black;
   position: relative;
 }
 
-header{
+.home{
+  background-color: white;
+  color: black;
+}
+
+header {
   background-color: rgb(49, 4, 100);
   text-align: center;
   padding: 20px;
   color: white;
 }
 
-header h1{
+header h1 {
   margin: 10px;
 }
 
-header nav{
+header nav {
   margin-top: 30px;
 }
 
-nav a{
+nav a {
   color: rgb(255, 255, 255);
 }
 
-a:hover{
+.link_header:hover {
   color: rgb(222, 188, 252);
-  transition: 0.5s;
+  transition: 0.3s;
 }
 
-main{
+main {
   padding: 40px;
   height: 100vh;
+  color: white;
+  text-align: center;
 }
 
-footer{
+main h1, main h2{
+  margin: 0px;
+}
+
+footer {
   background-color: rgb(73, 73, 73);
   color: white;
   padding: 20px;
-  margin-top: 20px;
   position: relative;
+  box-shadow: 5px 5px;
 }
 
 
 
-.products_title{
+.products_title {
   display: block;
   text-align: center;
   padding: 20px;
@@ -58,42 +69,169 @@ footer{
   background-color: rgb(49, 4, 100);
 }
 
-.product{
+.product {
   display: inline-block;
-  background-color: rgb(234, 213, 252);
+  background-color: white;
   margin: 10px;
   padding: 15px;
-  border: 5px solid rgb(49, 4, 100);
+  border: 5px solid black;
   border-radius: 5px;
   color: black;
   width: 40%;
 }
 
-button{
-  background-color: rgb(49, 4, 100);
+button {
+  margin: 10px;
+  border: 2px solid black
+}
+
+.botao_delete {
   color: rgb(172, 25, 25);
-  margin: 10px;
+
 }
 
-button:hover{
-  background-color: rgb(105, 11, 212);
-  transition: 1s;
+button:hover,
+.botao_link:hover {
+  background-color: rgb(222, 188, 252);
+  transition: 0.3s;
+  color: black;
+}
+
+.botao_link {
+  color: white;
+  border-radius: 8px;
+  border: 2px solid black;
+  padding: 0.6em 1.2em;
+  margin: 10px;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+
+
+form {
+  display: flex;
+  background-color: rgb(49, 4, 100);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+label {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: bold;
+  margin-bottom: 5px;
+  width: 100%;
+  max-width: 500px;
+  text-align: left;
+}
+
+.form_item_add {
+  margin-bottom: 15px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 500px;
+  padding: 20px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+textarea {
+  margin-bottom: 15px;
+}
+
+.form_item_edit {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 500px;
+  padding: 20px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+
+.image_product {
+  max-width: 60vh;
+  box-shadow: 1px 1px;
+  border-radius: 5px;
+  max-height: 60vh;
+  margin: 20px;
+}
+
+.product_table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 18px;
+  text-align: left;
+  color: black;
+  /* Cor da letra preta */
+  ;
+}
+
+/* Remove o cabeçalho padrão da parte superior */
+.product_table thead {
+  display: none;
+}
+
+/* Estilo para reorganizar o layout */
+.product_table tbody tr {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Estilo para cabeçalhos na lateral */
+.product_table tbody th {
+  background-color: #f4f4f4;
+  padding: 10px;
+  text-align: left;
+  font-weight: bold;
+  flex: 0 0 150px;
+  /* Define largura fixa para o cabeçalho */
+}
+
+/* Estilo para os dados */
+.product_table tbody td {
+  padding: 10px;
+  flex: 1;
+  /* Faz o conteúdo ocupar o restante do espaço */
+}
+
+/* Estilo alternado para as linhas */
+.product_table tbody tr {
+  background-color: white;
+}
+
+.loading_div {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.loading_text {
+  font-size: 24px;
+  font-weight: bold;
   color: white;
 }
-
-.botao{
-  color: white;
-}
-
-
-.form_item{
-  margin: 10px;
-  width: 50vh;
-  height: 5vh;
-  
-}
-
-img{
-  width: 50vh;
-}
-
