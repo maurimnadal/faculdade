@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import Header from '../components/header';
+import Footer from '../components/footer';
 
 function EditProduct() {
     const { id } = useParams();
-    const [product, setProduct] = useState(null);
+    const [product, setProduct] = useState("");
 
     useEffect(() => {
         axios.get(`https://fakestoreapi.com/products/${id}`)
@@ -27,15 +29,19 @@ function EditProduct() {
 
     return (
         <div>
+            < Header />
+            <main>
             <h2>Editar Produto</h2>
             <form onSubmit={handleSubmit} >
-                <input name="title" value={product.title} onChange={handleChange} required />
-                <input name="price" value={product.price} onChange={handleChange} required />
-                <textarea name="description" value={product.description} onChange={handleChange} required />
-                <input name="image" value={product.image} onChange={handleChange} required />
-                <input name="category" value={product.category} onChange={handleChange} required />
-                <button type="submit">Salvar Alterações</button>
+                <input className="form_item" name="title" value={product.title} onChange={handleChange} required /><br />
+                <input className="form_item" name="price" value={product.price} onChange={handleChange} required /><br />
+                <textarea className="form_item" name="description" value={product.description} onChange={handleChange} required /><br />
+                <input className="form_item" name="image" value={product.image} onChange={handleChange} required /><br />
+                <input className="form_item" name="category" value={product.category} onChange={handleChange} required /><br />
+                <button className="botao" type="submit">Salvar Alterações</button>
             </form>
+            </main>
+            < Footer />
         </div>
     );
 }

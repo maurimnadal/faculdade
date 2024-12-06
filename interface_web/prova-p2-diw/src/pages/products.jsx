@@ -25,7 +25,7 @@ function Products() {
 
     return (
         <div className='background_products'>
-            <h1 className='products_title'>Produtos</h1>
+            < Header />
             <div>
                 {products.map(product => (
                     <div key={product.id} className='product'>

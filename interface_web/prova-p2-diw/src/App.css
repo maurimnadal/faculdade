@@ -6,19 +6,13 @@
 }
 
 body{
-  display: block;
-  margin: 0px;
   background-color: white;
   color: black;
-}
-
-h2, h1{
-  margin: 0px;
+  position: relative;
 }
 
 header{
   background-color: rgb(49, 4, 100);
-  display: block;
   text-align: center;
   padding: 20px;
   color: white;
@@ -37,22 +31,21 @@ nav a{
 }
 
 a:hover{
-  color: rgb(234, 213, 252);
+  color: rgb(222, 188, 252);
   transition: 0.5s;
 }
 
 main{
   padding: 40px;
+  height: 100vh;
 }
 
 footer{
-  display: block;
   background-color: rgb(73, 73, 73);
   color: white;
   padding: 20px;
   margin-top: 20px;
   position: relative;
-  width: 100%;
 }
 
 
@@ -82,7 +75,25 @@ button{
   margin: 10px;
 }
 
+button:hover{
+  background-color: rgb(105, 11, 212);
+  transition: 1s;
+  color: white;
+}
+
 .botao{
   color: white;
+}
+
+
+.form_item{
+  margin: 10px;
+  width: 50vh;
+  height: 5vh;
+  
+}
+
+img{
+  width: 50vh;
 }
 
