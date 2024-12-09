@@ -184,36 +184,35 @@ textarea {
   ;
 }
 
-/* Remove o cabeçalho padrão da parte superior */
+
 .product_table thead {
   display: none;
 }
 
-/* Estilo para reorganizar o layout */
+
 .product_table tbody tr {
   display: flex;
   align-items: center;
   border-bottom: 1px solid #ddd;
 }
 
-/* Estilo para cabeçalhos na lateral */
+
 .product_table tbody th {
   background-color: #f4f4f4;
   padding: 10px;
   text-align: left;
   font-weight: bold;
   flex: 0 0 150px;
-  /* Define largura fixa para o cabeçalho */
 }
 
-/* Estilo para os dados */
+
 .product_table tbody td {
   padding: 10px;
   flex: 1;
-  /* Faz o conteúdo ocupar o restante do espaço */
+
 }
 
-/* Estilo alternado para as linhas */
+
 .product_table tbody tr {
   background-color: white;
 }
