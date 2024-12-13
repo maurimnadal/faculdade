@@ -19,12 +19,20 @@ class Queue {
         return this._items.length === 0;
     }
 
-    toString(){
-        if(this.isEmpty()){
-            return  ''
+    size() {
+        return this._items.length
+    }
+
+    clear() {
+        this._items = [];
+    }
+
+    toString() {
+        if (this.isEmpty()) {
+            return ''
         }
         let objString = `${this._items}`
-        for(let i = 1; i < this._count; i++){
+        for (let i = 1; i < this._count; i++) {
             objString = `${objString}, ${this._items[i]}`
         }
         return objString
