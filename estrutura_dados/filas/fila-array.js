@@ -4,11 +4,11 @@ class Queue {
     }
 
     enqueue(element) {
-        this._items.unshift(element);
+        this._items.push(element);
     }
 
     dequeue() {
-        return this._items.pop();
+        return this._items.shift();
     }
 
     nextElement() {
@@ -23,7 +23,7 @@ class Queue {
         if(this.isEmpty()){
             return  ''
         }
-        let objString = `último - ${this._items} - primeiro`
+        let objString = `${this._items}`
         for(let i = 1; i < this._count; i++){
             objString = `${objString}, ${this._items[i]}`
         }
