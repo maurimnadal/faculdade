@@ -1,0 +1,32 @@
+### Endpoint POST /api/alunos
+POST http://localhost:3000/api/alunos
+Content-Type: application/json
+
+{
+    "nome": "João Silva",
+    "curso": "Tecnologia em Análise e Desenvolvimento de Sistemas",
+    "idade": 22
+}
+
+### Endpoint POST /api/alunos
+POST http://localhost:3000/api/alunos
+Content-Type: application/json
+
+{
+    "nome": "Joana Silva",
+    "curso": "Tecnologia em Análise e Desenvolvimento de Sistemas",
+    "idade": 20
+}
+
+### Endpoint GET /api/alunos
+GET http://localhost:3000/api/alunos
+
+### Endpoint PUT /api/alunos/{id}
+PUT http://localhost:3000/api/alunos/
+Content-Type: application/json
+
+{
+    "nome": "João Silva",
+    "curso": "Ciência da Computação",
+    "idade": 23
+}
