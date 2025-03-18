@@ -2,9 +2,10 @@
 exports.__esModule = true;
 exports.Conta = void 0;
 var Conta = /** @class */ (function () {
-    function Conta() {
+    function Conta(agencia) {
         this.limite = 100; //7
         this.extrato = "";
+        this.agencia = agencia;
     }
     Conta.prototype.depositar = function (valor) {
         if (valor > 0) {
@@ -25,6 +26,14 @@ var Conta = /** @class */ (function () {
     };
     Conta.prototype.consultarSaldo = function () {
         return this.saldo + this.limite;
+    };
+    Conta.prototype.transferir = function (conta_destino, valor) {
+        if (valor <= this.saldo + this.limite && valor > 0) {
+            this.saldo -= valor;
+            conta_destino.saldo += valor;
+            return true;
+        }
+        return false;
     };
     return Conta;
 }());

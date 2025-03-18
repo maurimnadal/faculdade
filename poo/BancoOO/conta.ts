@@ -1,12 +1,16 @@
+import { Agencia } from "./agencia"
+
 export class Conta{
     numero: number
     saldo: number
     limite: number 
-    extrato : string
+    extrato: string
+    agencia: Agencia
 
-    constructor(){
+    constructor(agencia: Agencia){
         this.limite = 100  //7
         this.extrato = ""
+        this.agencia = agencia
     }
 
     depositar(valor: number):void{
@@ -32,4 +36,16 @@ export class Conta{
     consultarSaldo(): number{
         return this.saldo + this.limite
     }
+
+    transferir(conta_destino: Conta, valor: number): boolean{
+        if (valor <= this.saldo + this.limite && valor > 0){
+            this.saldo -= valor
+            conta_destino.saldo += valor
+            return true
+        }
+        return false
+
+    }
 }
+
+

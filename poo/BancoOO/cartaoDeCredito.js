@@ -2,7 +2,8 @@
 exports.__esModule = true;
 exports.CartaoDeCredito = void 0;
 var CartaoDeCredito = /** @class */ (function () {
-    function CartaoDeCredito() {
+    function CartaoDeCredito(numero) {
+        this.numero = numero;
     }
     return CartaoDeCredito;
 }());

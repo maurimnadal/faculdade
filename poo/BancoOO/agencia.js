@@ -2,7 +2,8 @@
 exports.__esModule = true;
 exports.Agencia = void 0;
 var Agencia = /** @class */ (function () {
-    function Agencia() {
+    function Agencia(numero) {
+        this.numero = numero;
     }
     return Agencia;
 }());

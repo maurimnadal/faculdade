@@ -1,3 +1,7 @@
 export class Agencia{
-    numero: number
+    numero: string
+
+    constructor(numero: string){
+        this.numero  = numero
+    }
 }
