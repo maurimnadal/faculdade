@@ -20,7 +20,9 @@ desligar()
 abrirPrograma()
 */
 
-class Computador{
+import { Software } from "./software";
+
+export class Computador{
     marca: string;
     capacidadeHD: number;
     capacidadeRAM: number;
@@ -31,10 +33,18 @@ class Computador{
     qtdMemoriaPlacaVideo: number;
     programasAbertos: string[];
     programasAbertosRAM: number[];
+    softwaresInstalados: Software[];
 
     constructor(){
         this.programasAbertos = new Array
         this.programasAbertosRAM = new Array
+        this.softwaresInstalados = new Array
+    }
+
+    instalarSoftware(sw: Software){
+        if(sw != null){
+            this.softwaresInstalados.push(sw)
+        }
     }
 
     carregarBIOS(){
@@ -54,7 +64,8 @@ class Computador{
     }
 
     abrirPrograma(programa: string, ram: number): boolean{
-        if(this.capacidadeRAM > ram){
+        const index = this.softwaresInstalados.findIndex(p => p.nome === programa)
+        if(this.capacidadeRAM > ram  && index > 0){
             console.log(`Abrindo programa ${programa}`)
             this.programasAbertos.push(programa)
             this.programasAbertosRAM.push(ram)
@@ -81,27 +92,3 @@ class Computador{
 }
 
 
-let comp1 = new Computador()
-
-comp1.marca = "Dell"
-comp1.capacidadeHD = 1000
-comp1.capacidadeRAM = 16
-comp1.freqProcessador = 3.5
-comp1.qtdNucleosProcessador = 8
-comp1.placaVideoIntegrada = true
-comp1.ligar()
-comp1.abrirPrograma("VS Code", 10)
-console.log(comp1.capacidadeRAM)
-comp1.fecharPrograma("VS Code")
-console.log(comp1.capacidadeRAM)
-
-let comp2 = new Computador
-comp2.marca = "Apple"
-comp2.capacidadeHD = 2000
-comp2.capacidadeRAM = 16
-comp2.freqProcessador = 3.8
-comp2.qtdNucleosProcessador = 8
-comp2.placaVideoIntegrada = false
-comp2.qtdMemoriaPlacaVideo = 8
-comp2.ligar()
-comp2.abrirPrograma("Safari", 50)
