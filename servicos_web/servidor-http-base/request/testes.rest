@@ -21,8 +21,8 @@ Content-Type: application/json
 ### Endpoint GET /api/alunos
 GET http://localhost:3000/api/alunos
 
-### Endpoint PUT /api/alunos/{id}
-PUT http://localhost:3000/api/alunos/
+### Endpoint PUT /api/alunos/<id>
+PUT http://localhost:3000/api/alunos/1
 Content-Type: application/json
 
 {
@@ -30,3 +30,6 @@ Content-Type: application/json
     "curso": "Ciência da Computação",
     "idade": 23
 }
+
+### Endpoint DELETE /api/alunos/<id>
+DELETE http://localhost:3000/api/alunos/1
