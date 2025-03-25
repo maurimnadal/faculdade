@@ -14,11 +14,17 @@ export class CartaoDeCredito{
     public get data_validade(): string{
         return this._data_validade
     }
+    public set data_validade(value:string){
+        this.data_validade = value
+    }
 
     private _cliente: Cliente
 
     public get cliente(): Cliente{
         return this._cliente
+    }
+    public set cliente(value:Cliente){
+        this.cliente = value
     }
 
 

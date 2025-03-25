@@ -14,5 +14,8 @@ export class Cliente{
     public get codigo(): number{
         return this._codigo
     }
+    public set codigo(value:number){
+        this.codigo = value
+    }
 
 }

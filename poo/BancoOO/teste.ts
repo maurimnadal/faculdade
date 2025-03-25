@@ -42,8 +42,8 @@ conta2.numero = 100
 
 
 //6
-console.log(`Número da Conta: ${conta1.numero} - Saldo: ${conta1.saldo} - Limite: ${conta1.limite}`)
-console.log(`Número da Conta: ${conta2.numero} - Saldo: ${conta2.saldo} - Limite: ${conta2.limite}`)
+console.log(`Número da Conta: ${conta1.numero} - Saldo: ${conta1.consultarSaldo} `)
+console.log(`Número da Conta: ${conta2.numero} - Saldo: ${conta2.consultarSaldo} `)
 
 
 //8

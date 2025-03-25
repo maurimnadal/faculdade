@@ -13,15 +13,7 @@ export class Conta{
 
     private _saldo: number
 
-    public get saldo(): number{
-        return this._saldo
-    }
-
     private _limite: number 
-
-    public get limite(): number{
-        return this._limite
-    }
 
     private _extrato: string
 
