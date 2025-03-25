@@ -1,5 +1,9 @@
 import { Computador } from "./computador";
+import { Desktop } from "./desktop";
+import { Notebook } from "./notebook";
+import { Smartphone } from "./smartphone";
 import { Software } from "./software";
+import { Tablet } from "./tablet";
 
 let comp1 = new Computador()
 
@@ -43,4 +47,16 @@ sw3.qtdMemoriaRAM = 2000
 comp1.instalarSoftware(sw1)
 comp1.instalarSoftware(sw2)
 comp1.instalarSoftware(sw3)
+
+
+let desk1:Desktop = new Desktop
+desk1.ligar()
  
+let note1:Notebook = new Notebook
+note1.ligar()
+
+let tb1:Tablet = new Tablet
+tb1.ligar()
+
+let phone1: Smartphone = new Smartphone
+phone1.ligar()
