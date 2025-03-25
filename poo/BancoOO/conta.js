@@ -1,40 +1,56 @@
-"use strict";
-exports.__esModule = true;
-exports.Conta = void 0;
-var Conta = /** @class */ (function () {
-    function Conta(agencia) {
-        this.limite = 100; //7
-        this.extrato = "";
-        this.agencia = agencia;
+export class Conta {
+    constructor(agencia) {
+        this._limite = 100; //7
+        this._extrato = "";
+        this._agencia = agencia;
     }
-    Conta.prototype.depositar = function (valor) {
+    get numero() {
+        return this._numero;
+    }
+    set numero(value) {
+        this._numero = value;
+    }
+    get saldo() {
+        return this._saldo;
+    }
+    get limite() {
+        return this._limite;
+    }
+    get extrato() {
+        return this._extrato;
+    }
+    get agencia() {
+        return this._agencia;
+    }
+    set agencia(value) {
+        this._agencia = value;
+    }
+    depositar(valor) {
         if (valor > 0) {
-            this.saldo += valor;
-            this.extrato += "Dep\u00F3sito: ".concat(valor, "\n");
+            this._saldo += valor;
+            this._extrato += `Depósito: ${valor}\n`;
         }
-    };
-    Conta.prototype.sacar = function (valor) {
-        if (valor <= this.saldo + this.limite && valor > 0) {
-            this.saldo -= valor;
-            this.extrato += "Saque: ".concat(valor, "\n");
+    }
+    sacar(valor) {
+        if (valor <= this._saldo + this._limite && valor > 0) {
+            this._saldo -= valor;
+            this._extrato += `Saque: ${valor}\n`;
             return true;
         }
         return false;
-    };
-    Conta.prototype.exibirExtrato = function () {
-        return this.extrato;
-    };
-    Conta.prototype.consultarSaldo = function () {
-        return this.saldo + this.limite;
-    };
-    Conta.prototype.transferir = function (conta_destino, valor) {
-        if (valor <= this.saldo + this.limite && valor > 0) {
-            this.saldo -= valor;
-            conta_destino.saldo += valor;
+    }
+    exibirExtrato() {
+        return this._extrato;
+    }
+    consultarSaldo() {
+        return this._saldo + this._limite;
+    }
+    transferir(conta_destino, valor) {
+        if (valor <= this._saldo + this._limite && valor > 0) {
+            this._saldo -= valor;
+            conta_destino._saldo += valor;
             return true;
         }
         return false;
-    };
-    return Conta;
-}());
-exports.Conta = Conta;
+    }
+}

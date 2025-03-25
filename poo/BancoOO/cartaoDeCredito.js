@@ -1,10 +1,17 @@
-"use strict";
-exports.__esModule = true;
-exports.CartaoDeCredito = void 0;
-var CartaoDeCredito = /** @class */ (function () {
-    function CartaoDeCredito(numero) {
-        this.numero = numero;
+export class CartaoDeCredito {
+    constructor(numero) {
+        this._numero = numero;
     }
-    return CartaoDeCredito;
-}());
-exports.CartaoDeCredito = CartaoDeCredito;
+    get numero() {
+        return this._numero;
+    }
+    set numero(value) {
+        this._numero = value;
+    }
+    get data_validade() {
+        return this._data_validade;
+    }
+    get cliente() {
+        return this._cliente;
+    }
+}

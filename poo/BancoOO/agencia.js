@@ -1,10 +1,11 @@
-"use strict";
-exports.__esModule = true;
-exports.Agencia = void 0;
-var Agencia = /** @class */ (function () {
-    function Agencia(numero) {
-        this.numero = numero;
+export class Agencia {
+    constructor(numero) {
+        this._numero = numero;
     }
-    return Agencia;
-}());
-exports.Agencia = Agencia;
+    get numero() {
+        return this._numero;
+    }
+    set numero(value) {
+        this._numero = value;
+    }
+}

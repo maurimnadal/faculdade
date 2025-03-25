@@ -1,7 +1,15 @@
 export class Agencia{
-    numero: string
+    private _numero: string
+
+    public get numero(): string{
+        return this._numero
+    }
+
+    public set numero(value:string){
+        this._numero = value
+    }
 
     constructor(numero: string){
-        this.numero  = numero
+        this._numero  = numero
     }
 }

@@ -1,104 +1,150 @@
-var Cliente = /** @class */ (function () {
-    function Cliente() {
+class Agencia {
+    constructor(numero) {
+        this._numero = numero;
     }
-    return Cliente;
-}());
-var CartaoDeCredito = /** @class */ (function () {
-    function CartaoDeCredito() {
+    get numero() {
+        return this._numero;
     }
-    return CartaoDeCredito;
-}());
-var Agencia = /** @class */ (function () {
-    function Agencia() {
+    set numero(value) {
+        this._numero = value;
     }
-    return Agencia;
-}());
-var Conta = /** @class */ (function () {
-    function Conta() {
-        this.limite = 100; //7
-        this.extrato = new Array;
+}
+class CartaoDeCredito {
+    constructor(numero) {
+        this._numero = numero;
     }
-    Conta.prototype.depositar = function (valor) {
+    get numero() {
+        return this._numero;
+    }
+    set numero(value) {
+        this._numero = value;
+    }
+    get data_validade() {
+        return this._data_validade;
+    }
+    get cliente() {
+        return this._cliente;
+    }
+}
+class Cliente {
+    get nome() {
+        return this._nome;
+    }
+    set nome(value) {
+        this._nome = value;
+    }
+    get codigo() {
+        return this._codigo;
+    }
+}
+class Conta {
+    constructor(agencia) {
+        this._limite = 100; //7
+        this._extrato = "";
+        this._agencia = agencia;
+    }
+    get numero() {
+        return this._numero;
+    }
+    set numero(value) {
+        this._numero = value;
+    }
+    get saldo() {
+        return this._saldo;
+    }
+    get limite() {
+        return this._limite;
+    }
+    get extrato() {
+        return this._extrato;
+    }
+    get agencia() {
+        return this._agencia;
+    }
+    set agencia(value) {
+        this._agencia = value;
+    }
+    depositar(valor) {
         if (valor > 0) {
-            this.saldo += valor;
-            this.extrato.push("Dep\u00F3sito: ".concat(valor));
-            console.log("Déposito realizado com sucesso");
+            this._saldo += valor;
+            this._extrato += `Depósito: ${valor}\n`;
         }
-        else
-            console.log("Valor Inválido");
-    };
-    Conta.prototype.sacar = function (valor) {
-        if (valor < this.saldo && valor > 0) {
-            this.saldo -= valor;
-            this.extrato.push("Saque: ".concat(valor));
-            console.log("Saque realizado com sucesso");
-        }
-        else
-            console.log("Valor Inválido");
-    };
-    Conta.prototype.exibirExtrato = function () {
-        for (var _i = 0, _a = this.extrato; _i < _a.length; _i++) {
-            var i = _a[_i];
-            console.log(i);
-        }
-    };
-    Conta.prototype.consultarSaldo = function () {
-        console.log("Saldo D\u00EDsponivel: ".concat(this.saldo, "R$"));
-    };
-    return Conta;
-}());
-var Funcionario = /** @class */ (function () {
-    function Funcionario() {
     }
-    Funcionario.prototype.aumentarSalario = function (porcentagem) {
-        this.salario += this.salario * (porcentagem / 100);
-    };
-    Funcionario.prototype.consultarDados = function () {
-        console.log("Nome: ".concat(this.nome, " - Sal\u00E1rio: ").concat(this.salario));
-    };
-    return Funcionario;
-}());
-//2 
-var cliente = new Cliente;
+    sacar(valor) {
+        if (valor <= this._saldo + this._limite && valor > 0) {
+            this._saldo -= valor;
+            this._extrato += `Saque: ${valor}\n`;
+            return true;
+        }
+        return false;
+    }
+    exibirExtrato() {
+        return this._extrato;
+    }
+    consultarSaldo() {
+        return this._saldo + this._limite;
+    }
+    transferir(conta_destino, valor) {
+        if (valor <= this._saldo + this._limite && valor > 0) {
+            this._saldo -= valor;
+            conta_destino._saldo += valor;
+            return true;
+        }
+        return false;
+    }
+}
+class Funcionario {
+    get nome() {
+        return this._nome;
+    }
+    set nome(value) {
+        this._nome = value;
+    }
+    get salario() {
+        return this._salario;
+    }
+    set salario(value) {
+        this._salario = value;
+    }
+    aumentarSalario(porcentagem) {
+        this._salario += this._salario * porcentagem / 100;
+    }
+    consultarDados() {
+        return `Nome: ${this._nome} - Salário: ${this._salario} R$`;
+    }
+}
+class Gerente {
+    get nome() {
+        return this._nome;
+    }
+    set nome(value) {
+        this._nome = value;
+    }
+    get salario() {
+        return this._salario;
+    }
+    set salario(value) {
+        this._salario = value;
+    }
+    aumentarSalarioTaxaFixa() {
+        this.aumentarSalarioTaxaVariavel(10);
+    }
+    aumentarSalarioTaxaVariavel(porcentagem) {
+        this._salario += this._salario * porcentagem / 100;
+    }
+}
+let cliente = new Cliente;
 cliente.nome = "Cláudio";
-cliente.codigo = 1;
-var cliente2 = new Cliente;
+let cliente2 = new Cliente;
 cliente2.nome = "Ana";
-cliente2.codigo = 2;
 //3
-var nubank = new CartaoDeCredito;
-nubank.numero = 1900;
-nubank.data_validade = "12-05-2030";
-var itau = new CartaoDeCredito;
-itau.numero = 3000;
-itau.data_validade = "11-02-2031";
+let nubank = new CartaoDeCredito(1900);
+let itau = new CartaoDeCredito(3000);
 //4
-var agencia1 = new Agencia;
-agencia1.numero = 1000;
-var agencia2 = new Agencia;
-agencia2.numero = 2000;
+let agencia1 = new Agencia("0001");
+let agencia2 = new Agencia("0002");
 //5
-var conta1 = new Conta;
+let conta1 = new Conta(agencia1);
 conta1.numero = 200;
-conta1.saldo = 2000;
-conta1.limite = 5000;
-var conta2 = new Conta;
+let conta2 = new Conta(agencia2);
 conta2.numero = 100;
-conta2.saldo = 5000;
-//6
-console.log("N\u00FAmero da Conta: ".concat(conta1.numero, " - Saldo: ").concat(conta1.saldo, " - Limite: ").concat(conta1.limite));
-console.log("N\u00FAmero da Conta: ".concat(conta2.numero, " - Saldo: ").concat(conta2.saldo, " - Limite: ").concat(conta2.limite));
-//8
-conta1.consultarSaldo();
-conta1.depositar(100);
-conta1.depositar(-1);
-conta1.sacar(3000);
-conta1.sacar(1000);
-conta1.exibirExtrato();
-conta1.consultarSaldo();
-//9
-var funcionario = new Funcionario;
-funcionario.nome = "João";
-funcionario.salario = 2000;
-funcionario.aumentarSalario(10);
-funcionario.consultarDados();

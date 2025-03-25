@@ -1,9 +1,11 @@
-"use strict";
-exports.__esModule = true;
-exports.Cliente = void 0;
-var Cliente = /** @class */ (function () {
-    function Cliente() {
+export class Cliente {
+    get nome() {
+        return this._nome;
     }
-    return Cliente;
-}());
-exports.Cliente = Cliente;
+    set nome(value) {
+        this._nome = value;
+    }
+    get codigo() {
+        return this._codigo;
+    }
+}

@@ -1,15 +1,20 @@
-"use strict";
-exports.__esModule = true;
-exports.Funcionario = void 0;
-var Funcionario = /** @class */ (function () {
-    function Funcionario() {
+export class Funcionario {
+    get nome() {
+        return this._nome;
     }
-    Funcionario.prototype.aumentarSalario = function (porcentagem) {
-        this.salario += this.salario * porcentagem / 100;
-    };
-    Funcionario.prototype.consultarDados = function () {
-        return "Nome: ".concat(this.nome, " - Sal\u00E1rio: ").concat(this.salario, " R$");
-    };
-    return Funcionario;
-}());
-exports.Funcionario = Funcionario;
+    set nome(value) {
+        this._nome = value;
+    }
+    get salario() {
+        return this._salario;
+    }
+    set salario(value) {
+        this._salario = value;
+    }
+    aumentarSalario(porcentagem) {
+        this._salario += this._salario * porcentagem / 100;
+    }
+    consultarDados() {
+        return `Nome: ${this._nome} - Salário: ${this._salario} R$`;
+    }
+}
