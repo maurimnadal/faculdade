@@ -23,7 +23,9 @@ let filmes = [
         "id": 2, "titulo": "Matrix", "descricao": "Um hacker descobre uma realidade alternativa", "ano":
             1999, "genero": "Ficção Científica", "nota": 8.7
     },
-    { "id": 3, "titulo": "Toy Story", "descricao": "Brinquedos ganham vida quando ninguém está olhando", "ano": 1995, "genero": "Animação", "nota": 8.3 }
+    {
+        "id": 3, "titulo": "Toy Story", "descricao": "Brinquedos ganham vida quando ninguém está olhando", "ano": 1995, "genero": "Animação", "nota": 8.3
+    }
 ]
 
 
@@ -43,9 +45,10 @@ app.get("/filmes", (req, res) => {
 app.get("/filmes/:id", (req, res) => {
     const id = parseInt(req.params.id);
     const filme = filmes.find(item => item.id === id);
-    if (isNaN(id)){
+    if (isNaN(id)) {
         return res.status(400).json({ erro: "O id deve ser um número" });
     }
+
     if (!filme) {
         return res.status(404).json({ erro: "Filme não encontrado" });
     }
@@ -65,17 +68,21 @@ app.post("/filmes", (req, res) => {
     if (ano < 1900 || ano > date.getFullYear()) {
         return res.status(400).json({ erro: "O ano deve ser um número entre 1900 e o ano atual." });
     }
-    if (nota < 0 || nota > 10){
+    if (nota < 0 || nota > 10) {
         return res.status(400).json({ erro: "A nota deve ser um número entre 0 e 10." });
     }
     const novoFilme = {
-        id: filmes.length + 1,
+        id: filmes[filmes.length - 1].id + 1,
         titulo,
         descricao,
         ano,
         genero,
         nota
     };
+    id_existe = filmes.some(item => item.id === novoFilme.id);
+    if (id_existe) {
+        return res.status(400).json({ erro: "O id deve ser único" });
+    }
     filmes.push(novoFilme);
     res.status(201).json(novoFilme);
 });
@@ -85,7 +92,7 @@ app.put("/filmes/:id", (req, res) => {
     const id = parseInt(req.params.id);
     const { titulo, descricao, ano, genero, nota } = req.body;
     const index = filmes.findIndex(item => item.id === id);
-    if (isNaN(id)){
+    if (isNaN(id)) {
         return res.status(400).json({ erro: "O id deve ser um número" });
     }
     if (index === -1) {
@@ -100,7 +107,7 @@ app.put("/filmes/:id", (req, res) => {
     if (ano < 1900 || ano > date.getFullYear()) {
         return res.status(400).json({ erro: "O ano deve ser um número entre 1900 e o ano atual." });
     }
-    if (nota < 0 || nota > 10){
+    if (nota < 0 || nota > 10) {
         return res.status(400).json({ erro: "A nota deve ser um número entre 0 e 10." });
     }
     filmes[index] = { id, titulo, descricao, ano, genero, nota };
@@ -112,7 +119,7 @@ app.put("/filmes/:id", (req, res) => {
 app.delete("/filmes/:id", (req, res) => {
     const id = parseInt(req.params.id);
     const index = filmes.findIndex(item => item.id === id);
-    if (isNaN(id)){
+    if (isNaN(id)) {
         return res.status(400).json({ erro: "O id deve ser um número" });
     }
     if (index === -1) {
