@@ -3,11 +3,6 @@ import { Secretario } from "./secretario";
 import { Telefonista } from "./telefonista";
 import { Funcionario } from "./funcionario";
 
-let funcionario: Funcionario = new Funcionario();
-funcionario.nome = "João"
-funcionario.salario = 2000
-
-console.log(funcionario.toString())
 
 let gerente: Gerente = new Gerente();
 gerente.nome = "Artur"

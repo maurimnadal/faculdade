@@ -1,4 +1,4 @@
-export class Funcionario {
+export abstract class Funcionario {
     private _nome: string
     public get nome(): string {
         return this._nome
@@ -17,6 +17,8 @@ export class Funcionario {
 
     protected _nomeUsuario: string
     protected _senha: string
+
+    abstract calcularValeAlimentacao()
 
     calculaBonificacao(): number {
         return this._salario * 0.1

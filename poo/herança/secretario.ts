@@ -18,4 +18,9 @@ export class Secretario extends Funcionario{
         return  `${super.toString()}, Ramal: ${this.ramal}`
     }
 
+    
+    calcularValeAlimentacao() {
+        return this.salario += 1000
+    }
+
 }

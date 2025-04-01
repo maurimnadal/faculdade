@@ -11,8 +11,6 @@ export class Gerente extends Funcionario{
     }
 
 
-    
-
     constructor(){
         super()
     }
@@ -23,5 +21,9 @@ export class Gerente extends Funcionario{
 
     toString(): string {
         return  `${super.toString()}, Nome de Usuário: ${this._nomeUsuario}, Senha: ${this._senha}`
+    }
+
+    calcularValeAlimentacao() {
+        return this.salario += 1000
     }
 }

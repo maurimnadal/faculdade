@@ -17,4 +17,9 @@ export class Telefonista extends Funcionario{
     toString(): string {
         return `${super.toString()}, Código da Estação de Trabalho: ${this.codigoEstacaoTrabalho}`
     }
+
+    
+    calcularValeAlimentacao() {
+        return this.salario += 1000
+    }
 }
