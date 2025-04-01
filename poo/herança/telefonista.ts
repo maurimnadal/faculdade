@@ -14,7 +14,7 @@ export class Telefonista extends Funcionario{
         super()
     }
 
-    toString(): void {
-        console.log(`Nome: ${this.nome}, Salário: ${this.salario}R$, Bonificação: ${this.calculaBonificacao()}R$, Código da Estação de Trabalho: ${this.codigoEstacaoTrabalho}`)
+    toString(): string {
+        return `${super.toString()}, Código da Estação de Trabalho: ${this.codigoEstacaoTrabalho}`
     }
 }

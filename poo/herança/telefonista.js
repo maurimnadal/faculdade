@@ -33,7 +33,7 @@ var Telefonista = /** @class */ (function (_super) {
         configurable: true
     });
     Telefonista.prototype.toString = function () {
-        console.log("Nome: ".concat(this.nome, ", Sal\u00E1rio: ").concat(this.salario, "R$, Bonifica\u00E7\u00E3o: ").concat(this.calculaBonificacao(), "R$, C\u00F3digo da Esta\u00E7\u00E3o de Trabalho: ").concat(this.codigoEstacaoTrabalho));
+        return "".concat(_super.prototype.toString.call(this), ", C\u00F3digo da Esta\u00E7\u00E3o de Trabalho: ").concat(this.codigoEstacaoTrabalho);
     };
     return Telefonista;
 }(funcionario_1.Funcionario));

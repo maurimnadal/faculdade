@@ -15,11 +15,14 @@ export class Funcionario {
         this._salario = value
     }
 
+    protected _nomeUsuario: string
+    protected _senha: string
+
     calculaBonificacao(): number {
         return this._salario * 0.1
     }
 
-    toString(): void {
-        console.log(`Nome: ${this._nome}, Salário: ${this._salario}R$, Bonificação: ${this.calculaBonificacao()}R$`)
+    toString(): string {
+        return `Nome: ${this._nome}, Salário: R$${this._salario}, Bonificação: R$${this.calculaBonificacao()}`
     }
 }

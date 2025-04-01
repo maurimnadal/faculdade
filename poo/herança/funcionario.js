@@ -28,7 +28,7 @@ var Funcionario = /** @class */ (function () {
         return this._salario * 0.1;
     };
     Funcionario.prototype.toString = function () {
-        console.log("Nome: ".concat(this._nome, ", Sal\u00E1rio: ").concat(this._salario, "R$, Bonifica\u00E7\u00E3o: ").concat(this.calculaBonificacao(), "R$"));
+        return "Nome: ".concat(this._nome, ", Sal\u00E1rio: R$").concat(this._salario, ", Bonifica\u00E7\u00E3o: R$").concat(this.calculaBonificacao());
     };
     return Funcionario;
 }());

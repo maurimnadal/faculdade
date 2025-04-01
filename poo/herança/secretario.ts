@@ -14,8 +14,8 @@ export class Secretario extends Funcionario{
         super()
     }
 
-    toString(): void {
-        console.log(`Nome: ${this.nome}, Salário: ${this.salario}R$, Bonificação: ${this.calculaBonificacao()}R$, Ramal: ${this.ramal}`)
+    toString(): string {
+        return  `${super.toString()}, Ramal: ${this.ramal}`
     }
 
 }

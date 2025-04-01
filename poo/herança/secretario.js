@@ -33,7 +33,7 @@ var Secretario = /** @class */ (function (_super) {
         configurable: true
     });
     Secretario.prototype.toString = function () {
-        console.log("Nome: ".concat(this.nome, ", Sal\u00E1rio: ").concat(this.salario, "R$, Bonifica\u00E7\u00E3o: ").concat(this.calculaBonificacao(), "R$, Ramal: ").concat(this.ramal));
+        return "".concat(_super.prototype.toString.call(this), ", Ramal: ").concat(this.ramal);
     };
     return Secretario;
 }(funcionario_1.Funcionario));

@@ -23,9 +23,6 @@ var Gerente = /** @class */ (function (_super) {
         return _super.call(this) || this;
     }
     Object.defineProperty(Gerente.prototype, "nomeUsuario", {
-        get: function () {
-            return this._nomeUsuario;
-        },
         set: function (value) {
             this._nomeUsuario = value;
         },
@@ -33,9 +30,6 @@ var Gerente = /** @class */ (function (_super) {
         configurable: true
     });
     Object.defineProperty(Gerente.prototype, "senha", {
-        get: function () {
-            return this._senha;
-        },
         set: function (value) {
             this._senha = value;
         },
@@ -46,7 +40,7 @@ var Gerente = /** @class */ (function (_super) {
         return this.salario * 0.2;
     };
     Gerente.prototype.toString = function () {
-        console.log("Nome: ".concat(this.nome, ", Sal\u00E1rio: ").concat(this.salario, "R$, Bonifica\u00E7\u00E3o: ").concat(this.calculaBonificacao(), "R$, Nome de Usu\u00E1rio: ").concat(this.nomeUsuario, ", Senha: ").concat(this.senha));
+        return "".concat(_super.prototype.toString.call(this), ", Nome de Usu\u00E1rio: ").concat(this._nomeUsuario, ", Senha: ").concat(this._senha);
     };
     return Gerente;
 }(funcionario_1.Funcionario));
