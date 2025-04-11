@@ -11,10 +11,10 @@ function handleRequest(req, res) {
         case routeKey === 'POST /api/alunos':
             createAluno(req, res); // Criar produto
             break;
-        case req.url.startsWith('/api/alunos/{id}') && req.method === 'PUT':
+        case req.url.startsWith('/api/alunos/') && req.method === 'PUT':
             updateAluno(req, res); // Atualizar produto
             break;
-        case req.url.startsWith('/api/alunos/:id') && req.method === 'DELETE':
+        case req.url.startsWith('/api/alunos/') && req.method === 'DELETE':
             deleteAluno(req, res); // Deletar produto
             break;
         default:
