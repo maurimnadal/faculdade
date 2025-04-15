@@ -2,7 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Usuario = void 0;
 var Usuario = /** @class */ (function () {
-    function Usuario() {
+    function Usuario(nome, email, senha) {
+        this._nome = nome;
+        this._email = email;
+        this._senha = senha;
     }
     Usuario.prototype.getNome = function () {
         return this._nome;
@@ -25,7 +28,7 @@ var Usuario = /** @class */ (function () {
         this._senha = senha;
     };
     Usuario.prototype.verificarLogin = function (email, senha) {
-        if (this.validarEmail(email) && senha.length >= 6) {
+        if (this.validarEmail(email) && this._email === email && this._senha === senha) {
             return true;
         }
         return false;
@@ -39,8 +42,10 @@ var Usuario = /** @class */ (function () {
         return "Email não encontrado.";
     };
     Usuario.prototype.validarEmail = function (email) {
-        var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return regex.test(email);
+        if (email.includes("@.")) {
+            return true;
+        }
+        return false;
     };
     return Usuario;
 }());

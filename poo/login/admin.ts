@@ -3,8 +3,8 @@ import { Usuario } from './usuario';
 export class Admin extends Usuario{
     private _nivelAcesso: number
 
-    constructor(nivelAcesso: number){
-        super()
+    constructor(nome: string, email: string, senha: string, nivelAcesso: number){
+        super(nome, email, senha)
         this._nivelAcesso = nivelAcesso
     }   
 

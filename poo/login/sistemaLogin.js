@@ -7,16 +7,17 @@ var SistemaLogin = /** @class */ (function () {
         this._usuarios = new Array;
     }
     SistemaLogin.prototype.criarUsuario = function (nome, email, senha) {
-        var usuario = new usuario_1.Usuario();
-        usuario.setNome(nome);
-        usuario.setEmail(email);
-        usuario.setSenha(senha);
-        this._usuarios.push(usuario);
-        return this._usuarios;
+        // const usuario = new Usuario()
+        // usuario.setNome(nome)
+        // usuario.setEmail(email)
+        // usuario.setSenha(senha)
+        // this._usuarios.push(usuario)
+        // return this._usuarios
+        this._usuarios.push(new usuario_1.Usuario(nome, email, senha));
     };
     SistemaLogin.prototype.login = function (email, senha) {
         for (var i = 0; i < this._usuarios.length; i++) {
-            if (this._usuarios[i].getEmail() === email && this._usuarios[i].getSenha() === senha) {
+            if (this._usuarios[i].verificarLogin(email, senha)) {
                 return "Login realizado com sucesso!";
             }
         }

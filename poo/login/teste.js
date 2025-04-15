@@ -3,17 +3,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var usuario_1 = require("./usuario");
 var sistemaLogin_1 = require("./sistemaLogin");
 var admin_1 = require("./admin");
-var usuario = new usuario_1.Usuario();
-usuario.setNome("Lucas");
-usuario.setEmail("lucas@email.com");
-usuario.setSenha("123456");
+var usuario = new usuario_1.Usuario("Lucas", "lucas@email.com", "123456");
+// usuario.setNome("Lucas")
+// usuario.setEmail("lucas@email.com")
+// usuario.setSenha("123456")
 usuario.verificarLogin(usuario.getEmail(), usuario.getSenha());
 usuario.validarEmail(usuario.getEmail());
-usuario.recuperarSenha(usuario.getEmail());
-var admin = new admin_1.Admin(2);
-admin.setNome("Mauricio");
-admin.setEmail("mauricio@email.com");
-admin.setSenha("654321");
+console.log(usuario.recuperarSenha(usuario.getEmail()));
+var admin = new admin_1.Admin("Mauricio", "mauricio@email.com", "654321", 2);
+// admin.setNome("Mauricio")
+// admin.setEmail("mauricio@email.com")
+// admin.setSenha("654321")
 console.log(admin.getNivelAcesso());
 admin.setNivelAcesso(1);
 console.log(admin.getNivelAcesso());

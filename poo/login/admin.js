@@ -19,8 +19,8 @@ exports.Admin = void 0;
 var usuario_1 = require("./usuario");
 var Admin = /** @class */ (function (_super) {
     __extends(Admin, _super);
-    function Admin(nivelAcesso) {
-        var _this = _super.call(this) || this;
+    function Admin(nome, email, senha, nivelAcesso) {
+        var _this = _super.call(this, nome, email, senha) || this;
         _this._nivelAcesso = nivelAcesso;
         return _this;
     }

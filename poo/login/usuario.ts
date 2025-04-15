@@ -3,6 +3,12 @@ export class Usuario{
     private _email: string;
     private _senha: string;
 
+    constructor(nome: string, email: string, senha: string){
+        this._nome = nome
+        this._email = email
+        this._senha = senha
+    }
+
     getNome(): string {
         return this._nome;
     }
@@ -30,7 +36,7 @@ export class Usuario{
     }
 
     verificarLogin(email: string, senha: string): boolean {
-        if(this.validarEmail(email) && senha.length >= 6){
+        if(this.validarEmail(email) && this._email === email && this._senha === senha){
             return true;
         }
         return false;

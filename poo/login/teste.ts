@@ -2,18 +2,18 @@ import { Usuario } from "./usuario";
 import { SistemaLogin } from "./sistemaLogin";
 import { Admin } from "./admin";
 
-const usuario = new Usuario()
-usuario.setNome("Lucas")
-usuario.setEmail("lucas@email.com")
-usuario.setSenha("123456")
+const usuario = new Usuario("Lucas", "lucas@email.com", "123456")
+// usuario.setNome("Lucas")
+// usuario.setEmail("lucas@email.com")
+// usuario.setSenha("123456")
 usuario.verificarLogin(usuario.getEmail(), usuario.getSenha())
 usuario.validarEmail(usuario.getEmail())
-usuario.recuperarSenha(usuario.getEmail())
+console.log(usuario.recuperarSenha(usuario.getEmail()))
 
-const admin = new Admin(2)
-admin.setNome("Mauricio")
-admin.setEmail("mauricio@email.com")
-admin.setSenha("654321")
+const admin = new Admin("Mauricio", "mauricio@email.com", "654321", 2)
+// admin.setNome("Mauricio")
+// admin.setEmail("mauricio@email.com")
+// admin.setSenha("654321")
 console.log(admin.getNivelAcesso())
 admin.setNivelAcesso(1)
 console.log(admin.getNivelAcesso())
