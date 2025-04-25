@@ -1,0 +1,33 @@
+@baseURL = http://localhost:3000/jogos
+
+GET {{baseURL}}
+Content-Type: application/json
+###
+
+
+GET {{baseURL}}/1
+Content-Type: application/json
+###
+### 🔹 Adicionar novo livro
+POST {{baseURL}}
+Content-Type: application/json
+
+{
+ "nome": "Cyberpunk 2077",
+ "plataforma": "Console/PC",
+ "ano_lancamento": 2020
+}
+###
+
+PUT {{baseURL}}/1
+Content-Type: application/json
+
+{
+ "nome": "The Legend of Zelda: Breath of the Wild (Edição Definitiva)",
+ "plataforma": "Nintendo Switch",
+ "ano_lancamento": 2017
+}
+###
+### 🔹 Deletar livro
+DELETE {{baseURL}}/3
+Content-Type: application/json

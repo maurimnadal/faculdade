@@ -1,11 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const connection = require("../config/db");
-router.get("/", (req, res) => {
-    connection.query("SELECT * FROM pontuacoes", (err, results) => {
-        if (err) return res.status(500).send("Erro ao buscar livros");
-        res.json(results);
-    });
-});
+const pontuacaoController = require("../controllers/pontuacaoController");
+
+router.post("/", pontuacaoController.adicionar)
+router.get("/ranking/:idJogo", pontuacaoController.rankingPorJogo)
+router.get("/jogos/populares", pontuacaoController.buscarJogosMaisPopulares)
 
 module.exports = router

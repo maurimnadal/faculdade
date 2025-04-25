@@ -1,0 +1,21 @@
+@baseURL = http://localhost:3000/pontuacoes
+
+POST {{baseURL}}
+Content-Type: application/json
+
+{
+    "jogo_id": 5,
+    "jogador_id": 3,
+    "pontuacao": 10
+}
+###
+
+GET {{baseURL}}/ranking/100
+Content-Type: application/json
+###
+
+GET {{baseURL}}/jogos/populares
+Content-Type: application/json
+
+
+

@@ -17,10 +17,10 @@ create table jogadores (
 
 create table pontuacoes (
     id int primary key auto_increment,
-    jogo int not null,
-    jogador int not null,
+    jogo_id int not null,
+    jogador_id int not null,
     pontuacao int not null,
     data_registro timestamp default current_timestamp,
-    foreign key (jogo) references jogos (id),
-    foreign key (jogador) references jogadores (id)
+    foreign key (jogo_id) references jogos (id),
+    foreign key (jogador_id) references jogadores (id)
 );
