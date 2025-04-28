@@ -35,6 +35,9 @@ var Telefonista = /** @class */ (function (_super) {
     Telefonista.prototype.toString = function () {
         return "".concat(_super.prototype.toString.call(this), ", C\u00F3digo da Esta\u00E7\u00E3o de Trabalho: ").concat(this.codigoEstacaoTrabalho);
     };
+    Telefonista.prototype.calcularValeAlimentacao = function () {
+        return this.salario += 1000;
+    };
     return Telefonista;
 }(funcionario_1.Funcionario));
 exports.Telefonista = Telefonista;

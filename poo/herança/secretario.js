@@ -35,6 +35,9 @@ var Secretario = /** @class */ (function (_super) {
     Secretario.prototype.toString = function () {
         return "".concat(_super.prototype.toString.call(this), ", Ramal: ").concat(this.ramal);
     };
+    Secretario.prototype.calcularValeAlimentacao = function () {
+        return this.salario += 1000;
+    };
     return Secretario;
 }(funcionario_1.Funcionario));
 exports.Secretario = Secretario;

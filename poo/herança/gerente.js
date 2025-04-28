@@ -42,6 +42,11 @@ var Gerente = /** @class */ (function (_super) {
     Gerente.prototype.toString = function () {
         return "".concat(_super.prototype.toString.call(this), ", Nome de Usu\u00E1rio: ").concat(this._nomeUsuario, ", Senha: ").concat(this._senha);
     };
+    Gerente.prototype.calcularValeAlimentacao = function () {
+        return this.salario += 1000;
+    };
     return Gerente;
 }(funcionario_1.Funcionario));
 exports.Gerente = Gerente;
+var oi = new Gerente();
+console.log(oi);
