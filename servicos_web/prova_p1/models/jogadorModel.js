@@ -4,9 +4,11 @@ exports.buscarTodos = (callback) => {
     connection.query("SELECT * FROM jogadores", callback);
 };
 
+
 exports.buscarPorId = (id, callback) => {
     connection.query("SELECT * FROM jogadores WHERE id = ?", [id], callback);
 };
+
 
 exports.adicionar = (dados, callback) => {
     const { nome, nickname } = dados;

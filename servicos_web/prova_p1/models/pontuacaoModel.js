@@ -6,6 +6,7 @@ exports.adicionar = (dados, callback) => {
     connection.query(sql, [jogo_id, jogador_id, pontuacao], callback);
 };
 
+
 exports.rankingPorJogo = (idJogo, callback) => {
     connection.query(
         `
@@ -19,6 +20,7 @@ exports.rankingPorJogo = (idJogo, callback) => {
         `, [idJogo], callback
     );
 }
+
 
 exports.buscarJogosMaisPopulares = (callback) => {
     connection.query(

@@ -1,10 +1,12 @@
 const jogoModel = require("../models/jogoModel");
+
 exports.buscarTodos = (req, res) => {
     jogoModel.buscarTodos((err, results) => {
         if (err) return res.status(500).send("Erro ao listar jogos");
         res.json(results);
     });
 };
+
 
 exports.buscarPorId = (req, res) => {
     jogoModel.buscarPorId(req.params.id, (err, results) => {

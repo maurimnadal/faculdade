@@ -5,21 +5,21 @@ Content-Type: application/json
 ###
 
 
-GET {{baseURL}}/1
+GET {{baseURL}}/4
 Content-Type: application/json
 ###
-### 🔹 Adicionar novo livro
+
 POST {{baseURL}}
 Content-Type: application/json
 
 {
- "nome": "Cyberpunk 2077",
+ "nome": "Cyberpunk 2077 - Phantom Liberty",
  "plataforma": "Console/PC",
- "ano_lancamento": 2020
+ "ano_lancamento": 2024
 }
 ###
 
-PUT {{baseURL}}/1
+PUT {{baseURL}}/4
 Content-Type: application/json
 
 {
@@ -28,6 +28,6 @@ Content-Type: application/json
  "ano_lancamento": 2017
 }
 ###
-### 🔹 Deletar livro
-DELETE {{baseURL}}/3
+
+DELETE {{baseURL}}/6
 Content-Type: application/json

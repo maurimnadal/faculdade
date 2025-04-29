@@ -7,6 +7,7 @@ exports.buscarTodos = (req, res) => {
     });
 };
 
+
 exports.buscarPorId = (req, res) => {
     jogadorModel.buscarPorId(req.params.id, (err, results) => {
         if (err) return res.status(500).send("Erro ao buscar jogador");
@@ -14,6 +15,7 @@ exports.buscarPorId = (req, res) => {
         res.json(results[0]);
     });
 };
+
 
 exports.adicionar = (req, res) => {
     const { nome, nickname } = req.body;
@@ -23,6 +25,10 @@ exports.adicionar = (req, res) => {
     }
     jogadorModel.adicionar(req.body, (err) => {
         if (err) {
+            if(err.code === "ER_DUP_ENTRY"){
+                console.error("O nickname informado já existe")
+                return res.status(400).send("O nickname informado já existe")
+            }
             console.error("Erro ao cadastrar jogador:", err);
             return res.status(500).send("Erro ao cadastrar jogador");
         }

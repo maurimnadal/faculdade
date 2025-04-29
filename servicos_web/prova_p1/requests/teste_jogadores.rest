@@ -4,6 +4,10 @@ GET {{baseURL}}
 Content-Type: application/json
 ###
 
+GET {{baseURL}}/1
+Content-Type: application/json
+###
+
 POST {{baseURL}}
 Content-Type: application/json
 

@@ -4,13 +4,13 @@ POST {{baseURL}}
 Content-Type: application/json
 
 {
-    "jogo_id": 5,
-    "jogador_id": 3,
+    "jogo_id": 7,
+    "jogador_id": 1,
     "pontuacao": 10
 }
 ###
 
-GET {{baseURL}}/ranking/100
+GET {{baseURL}}/ranking/7
 Content-Type: application/json
 ###
 
