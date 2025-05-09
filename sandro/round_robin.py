@@ -50,7 +50,9 @@ escalonador = CPU(quantum=2)
 
 # TODO ele quer saber o runtime de cada processo
 
-# TODO quer o tempo médio 
+# TODO quer o tempo médio da exec por processo
+
+# TODO Processo que mais demorou
 
 # TODO gerar automaticamente o numero de processos
 escalonador.adicionar_processo("P1", 10)
