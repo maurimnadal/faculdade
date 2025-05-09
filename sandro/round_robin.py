@@ -42,6 +42,7 @@ class CPU:
 
 
 escalonador = CPU(quantum=2)
+# TODO ele quer que de para botar o quantum na linha de comando
 
 # TODO junta tudo no msm
 
