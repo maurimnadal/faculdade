@@ -1,6 +1,6 @@
 from cpu import CPU
 
-escalonador = CPU(quantum=2d)
+escalonador = CPU(quantum=2)
 
 # TODO junta tudo no msm
 
