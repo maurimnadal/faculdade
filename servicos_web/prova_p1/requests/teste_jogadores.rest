@@ -12,7 +12,7 @@ POST {{baseURL}}
 Content-Type: application/json
 
 {
- "nome": "Claudio Nadal",
- "nickname": "claudio1"
+ "nome": "Maurício Nadal",
+ "nickname": "mauricio1"
 }
 ###

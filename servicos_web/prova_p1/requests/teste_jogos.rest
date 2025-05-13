@@ -5,7 +5,7 @@ Content-Type: application/json
 ###
 
 
-GET {{baseURL}}/4
+GET {{baseURL}}/1
 Content-Type: application/json
 ###
 
@@ -19,7 +19,7 @@ Content-Type: application/json
 }
 ###
 
-PUT {{baseURL}}/4
+PUT {{baseURL}}/1
 Content-Type: application/json
 
 {
@@ -29,5 +29,5 @@ Content-Type: application/json
 }
 ###
 
-DELETE {{baseURL}}/4
+DELETE {{baseURL}}/3
 Content-Type: application/json

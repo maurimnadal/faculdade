@@ -1,81 +1,62 @@
-# class EscalonamentoRoundRobin:
-#     def __init__(self, quantum):
-#         self.quantum = quantum
-#         self.fila = []
-    
-
-#     def adicionar_processo(self, nome, tempo):
-#         processo = {"nome": nome, "tempo_restante": tempo}
-#         self.fila.append(processo)
-
-
-#     def executar(self):
-#         tempo_atual = 0
-#         while self.fila:
-#             processo = self.fila.pop(0)
-#             print(f"Tempo {tempo_atual}: Executando {processo['nome']}")
-
-#             if processo["tempo_restante"] > self.quantum:
-#                 processo["tempo_restante"] -= self.quantum
-#                 tempo_atual += self.quantum
-#                 self.fila.append(processo)
-#                 print(f"{processo['nome']} não terminou, resta {processo['tempo_restante']} unidades de tempo.")
-#             else:
-#                 tempo_atual += processo["tempo_restante"]
-#                 print(f"{processo['nome']} finalizado.")
-
-#         print(f"Todos os processos foram executados em {tempo_atual} unidades de tempo.")
-
-
-# escalonador = EscalonamentoRoundRobin(quantum=3)
-# escalonador.adicionar_processo("P1", 10)
-# escalonador.adicionar_processo("P2", 4)
-# escalonador.adicionar_processo("P3", 7)
-
-# escalonador.executar()
-
 class Processo:
-    def __init__(self, id, tempoNecessario):
-        self.id = id
-        self.tempoNecessario = tempoNecessario
+    def __init__(self, nome, tempo_total):
+        self.nome = nome
+        self.tempo_restante = tempo_total
 
-    def getId(self):
-        return self.id
+    def executar(self, quantum):
+        if self.tempo_restante > quantum:
+            self.tempo_restante -= quantum
+            return quantum, False  
+        else:
+            tempo_gasto = self.tempo_restante
+            self.tempo_restante = 0
+            return tempo_gasto, True  
 
-    def setId(self, value):
-        self.id = value
-
-    def getTempoNecessario(self):
-        return self.tempoNecessario
-
-    def setTempoNecessario(self, value):
-        self.tempoNecessario = value
 
 
 class CPU:
-    quantum = 10
+    def __init__(self, quantum):
+        self.quantum = quantum
+        self.fila = []
 
-    def __init__(self, fila):
-        self.fila = fila
+    def adicionar_processo(self, nome, tempo_total):
+        processo = Processo(nome, tempo_total)
+        self.fila.append(processo)
 
-    def getFila(self):
-        return self.fila
+    def executar(self):
+        tempo_total = 0
+        while len(self.fila) != 0:
+            processo = self.fila.pop(0)
+            print(f"Tempo {tempo_total}: Executando {processo.nome}")
 
-    def setFila(self, value):
-        self.fila = value
+            tempo_gasto, finalizado = processo.executar(self.quantum)
+            tempo_total += tempo_gasto
 
-    def executa(self):
-        executados = []
+            if finalizado:
+                print(f"{processo.nome} finalizado.")
+            else:
+                print(f"{processo.nome} não terminou, resta {processo.tempo_restante} unidades de tempo.")
+                self.fila.append(processo)
 
-        for processo in fila:
+        print(f"Todos os processos foram executados em {tempo_total} unidades de tempo.")
 
-            if self.quantum - processo.getTempoNecessario() >= 0:
-                print(f'No processo {processo.getId()} foram executados {processo.getTempoNecessario())}  de {self.quantum}')
 
-                print(str(processo.getId()) + ' executado com sucesso!')
-                executados.append(processo.getId())
+escalonador = CPU(quantum=2)
+# TODO ele quer que de para botar o quantum na linha de comando
 
-            processo.setTempoNecessario(self.quantum - processo.getTempoNecessario())
+# TODO junta tudo no msm
 
-        print(executados)
-    
+# TODO automatiza a quantidade de processos necessários
+
+# TODO ele quer saber o runtime de cada processo
+
+# TODO quer o tempo médio da exec por processo
+
+# TODO Processo que mais demorou
+
+# TODO gerar automaticamente o numero de processos
+escalonador.adicionar_processo("P1", 10)
+escalonador.adicionar_processo("P2", 4)
+escalonador.adicionar_processo("P3", 7)
+
+escalonador.executar()
