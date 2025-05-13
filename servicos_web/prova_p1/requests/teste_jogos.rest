@@ -29,5 +29,5 @@ Content-Type: application/json
 }
 ###
 
-DELETE {{baseURL}}/6
+DELETE {{baseURL}}/4
 Content-Type: application/json

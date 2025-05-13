@@ -13,6 +13,6 @@ Content-Type: application/json
 
 {
  "nome": "Claudio Nadal",
- "nickname": "claudio"
+ "nickname": "claudio1"
 }
 ###

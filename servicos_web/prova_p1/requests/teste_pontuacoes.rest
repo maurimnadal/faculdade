@@ -6,7 +6,7 @@ Content-Type: application/json
 {
     "jogo_id": 7,
     "jogador_id": 1,
-    "pontuacao": 10
+    "pontuacao": -10
 }
 ###
 
