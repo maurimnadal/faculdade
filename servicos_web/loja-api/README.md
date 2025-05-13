@@ -1,68 +1,44 @@
-# 🛒 Loja API
-API RESTful simples para cadastro e gerenciamento de produtos, desenvolvida com Node.js, Express e MySQL.
+# 🛍 Loja API
+Uma **API RESTful** desenvolvida em **Node.js** com **Express** e **MySQL**,
+que permite realizar operações de cadastro, listagem, atualização e exclusão de
+produtos, categorias e usuários. Projetada com boas práticas de organização de
+código, uso de middlewares, validações e integração com ESLint + Prettier.
 ---
 ## 🚀 Funcionalidades
-- Cadastrar novos produtos
-- Listar todos os produtos
-- Atualizar produtos existentes
-- Excluir produtos
-- Validação de dados (nome, preço, estoque)
+- 🔹 `GET /products` – Lista todos os produtos
+- 🔹 `GET /categories` – Lista todas as categorias
+- 🔹 `GET /users` – Lista todos os usuários
+- 🔹 `POST /products` – Cadastra um novo produto
+- 🔹 `PUT /products/:id` – Atualiza um produto existente
+- 🔹 `DELETE /products/:id` – Remove um produto
+- ✅ Validação de campos obrigatórios
+- 🧪 Testes via REST Client no VSCode
 ---
-## 🛠 Tecnologias
-- Node.js
-- Express
-- MySQL
-- ESLint
-- Prettier
-- REST Client (testes no VS Code)
+## 🧱 Tecnologias Utilizadas
+- [Node.js](https://nodejs.org/)
+- [Express](https://expressjs.com/)
+- [MySQL](https://www.mysql.com/)
+- [Dotenv](https://github.com/motdotla/dotenv)
+- [ESLint](https://eslint.org/)
+- [Prettier](https://prettier.io/)
+- [REST
+Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)
 ---
-## ⚙️ Como executar
-1. Clone o repositório:
- ```bash
- git clone https://github.com/seu-usuario/loja-api.git
- cd loja-api
- ```
-2. Instale as dependências:
- ```bash
- npm install
-  ```
-3. Configure o banco de dados:
- - Rode os scripts:
- - `create_database.sql`
- - `create_tables.sql`
- - `seed_data.sql`
- - Crie um arquivo `.env` com:
- ```env
- DB_HOST=localhost
- DB_USER=root
- DB_PASS=sua_senha
- DB_NAME=loja_db
- ```
-4. Inicie o servidor:
- ```bash
- npm run dev
- ```
-5. Teste os endpoints com o arquivo:
- ```
- tests/products_api_test.rest
- ```
----
-## 📁 Estrutura resumida
+## 📦 Instalação e uso
 ```
-src/
-├── config/ # Conexão com o banco
-├── controllers/ # Lógica das requisições
-├── models/ # Queries SQL
-├── services/ # Regras de negócio
-├── routes/ # Rotas da API
-├── middlewares/ # Tratamento de erros
-├── utils/ # Validações
-└── app.js # App Express
+bash
+# Clone o repositório
+git clone https://github.com/seu-usuario/loja-api.git
+cd loja-api
+# Instale as dependências
+npm install
+# Configure o ambiente
+cp .env.example .env
+# Edite o .env com as configurações do seu MySQL
+# Crie o banco de dados e tabelas
+mysql -u root -p < scripts/create_database.sql
+mysql -u root -p loja < scripts/create_tables.sql
+mysql -u root -p loja < scripts/seed_data.sql
+# Inicie a aplicação
+node server.js
 ```
----
-## 🧹 Padrões de Código
-- ESLint + Prettier integrados
-- Formatado automaticamente ao salvar
----
-## 📜 Licença
-Uso livre para fins educacionais e profissionais.
