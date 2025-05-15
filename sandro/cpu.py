@@ -49,7 +49,7 @@ class CPU:
 
         exec_processos = {processo.nome: {"runtime": 0, "numero_execucoes": 0} for processo in self.fila}
 
-        while self.fila:
+        while len(self.fila) != 0:
             processo = self.fila.pop(0)
             print(f"\nTempo {tempo_total}: {processo}")
 
