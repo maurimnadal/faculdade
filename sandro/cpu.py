@@ -69,11 +69,11 @@ class CPU:
         print(f"Todos os processos foram executados em {tempo_total} unidades de tempo.\n")
         print("Relatório:")
 
-        for nome, dados in exec_processos.items():
+        for processo, dados in exec_processos.items():
             total_runtime = dados["runtime"]
             execucoes = dados["numero_execucoes"]
             media = round(total_runtime / execucoes, 2)
-            print(f"{nome} - Execuções: {execucoes}, Tempo médio por execução: {media}")
+            print(f"{processo} - Execuções: {execucoes}, Tempo médio por execução: {media}")
         
 
 if __name__ == "__main__":
