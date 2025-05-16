@@ -90,3 +90,9 @@ if __name__ == "__main__":
 
     cpu = CPU(quantum=args.q)
     cpu.executar()
+    
+# TODO IO bound e cpu bound
+
+# TODO botar o tempo final em que cada processo foi executado e fazer a média
+
+# TODO prioridade do jack
