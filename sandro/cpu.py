@@ -4,7 +4,6 @@ import argparse
 class Processo:
     def __init__(self, nome, tempo_processo):
         self.nome = nome
-        self.tempo_processo = tempo_processo
         self.tempo_restante = tempo_processo
 
     def executar(self, quantum):
@@ -32,25 +31,27 @@ class CPU:
 
     def executar(self):
         tempo_total = 0
-        numero_processos = random.randint(3, 8)
+        numero_processos = random.randint(2, 5)
         processo_atual = 1
 
 
         while len(self.fila) != numero_processos:
             self.adicionar_processo(f"Processo {processo_atual}", random.randint(4, 10))
             processo_atual += 1
-
-        print("Processos a serem executados:\n")
+        print("-"*60)
+        print("\nProcessos a serem executados:\n")
         [print(processo) for processo in self.fila]
+        
+        print("-"*60)
 
         print("\nComeçando execução dos processos...\n")
 
 
         exec_processos = {processo.nome: {"runtime": 0, "numero_execucoes": 0} for processo in self.fila}
 
-        while self.fila:
+        while len(self.fila) != 0:
             processo = self.fila.pop(0)
-            print(f"Tempo {tempo_total}: {processo}")
+            print(f"\nTempo {tempo_total}: {processo}")
 
             runtime, finalizado = processo.executar(self.quantum)
             tempo_total += runtime
@@ -61,19 +62,24 @@ class CPU:
             if finalizado:
                 print(f"Status: {processo.nome} finalizado.")
                 print(f"Runtime: {runtime}\n")
+                print("-"*60)
             else:
                 print(f"Status: {processo.nome} não terminou, resta {processo.tempo_restante} unidades de tempo.")
                 print(f"Runtime: {self.quantum}\n")
+                print("-"*60)
                 self.fila.append(processo)
 
-        print(f"Todos os processos foram executados em {tempo_total} unidades de tempo.\n")
-        print("Relatório:")
+        print(f"\nTodos os processos foram executados em {tempo_total} unidades de tempo.\n")
+        print("-"*60)
+        print("\nRelatório:\n")
 
         for processo, dados in exec_processos.items():
             total_runtime = dados["runtime"]
             execucoes = dados["numero_execucoes"]
             media = round(total_runtime / execucoes, 2)
             print(f"{processo} - Execuções: {execucoes}, Tempo médio por execução: {media}")
+            
+        print("-"*60)
         
 
 if __name__ == "__main__":
@@ -84,3 +90,9 @@ if __name__ == "__main__":
 
     cpu = CPU(quantum=args.q)
     cpu.executar()
+    
+# TODO IO bound e cpu bound
+
+# TODO botar o tempo final em que cada processo foi executado e fazer a média
+
+# TODO prioridade do jack
