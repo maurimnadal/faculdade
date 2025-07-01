@@ -72,10 +72,10 @@ class CPU:
 
             if indice_do_processo != -1:
                 processo = self.fila.pop(indice_do_processo)
-                print(processo)
+                print(f"Tempo {tempo_total}: {processo}")
             else:
                 processo = self.fila.pop(0)
-                print(processo)
+                print(f"Tempo {tempo_total}: {processo}")
 
 
             runtime, finalizado = processo.executar(self.quantum)
