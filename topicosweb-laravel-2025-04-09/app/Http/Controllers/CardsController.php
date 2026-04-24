@@ -32,7 +32,28 @@ class CardsController extends Controller
         return view("cards/insert");
     }
     public function editar(Request $request, Card $card){
-        return "editar";
+        if($request->isMethod("PUT")){
+            $data = $request->only("name", "type", "description");
+            
+            // Processar a foto se foi enviada
+            if($request->hasFile("picture")){
+                // Deletar foto antiga se existir
+                if($card->picture){
+                    Storage::disk("public")->delete($card->picture);
+                }
+                // Salvar nova foto
+                $picture = $request->file("picture")->store("cartas", "public");
+                $data["picture"] = $picture;
+            }
+            
+            $card->fill($data);
+            $card->save();
+
+            return redirect()->route("cartas.index");
+        }
+        return view("cards.editar", [
+            "card" => $card
+        ]);
     }
 
     public function excluir(Request $request, Card $card){
