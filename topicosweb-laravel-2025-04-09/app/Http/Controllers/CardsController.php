@@ -16,54 +16,52 @@ class CardsController extends Controller
         ]);
     }
     
-    public function inserir(Request $request){
+    public function create(Request $request){
         if($request->isMethod("POST")){
             $data = $request->only("name", "type", "picture", "description");
-            $picture = $request->file("picture")->store("cartas", "public");
+            $picture = $request->file("picture")->store("cards", "public");
             if($picture){
                 $data["picture"] = $picture;
             }
             
             Card::create($data);
-            return redirect()->route("cartas.index");
+            return redirect()->route("cards.index");
         }
 
         
-        return view("cards/insert");
+        return view("cards/create");
     }
-    public function editar(Request $request, Card $card){
+    
+    public function edit(Request $request, Card $card){
         if($request->isMethod("PUT")){
             $data = $request->only("name", "type", "description");
             
-            // Processar a foto se foi enviada
             if($request->hasFile("picture")){
-                // Deletar foto antiga se existir
                 if($card->picture){
                     Storage::disk("public")->delete($card->picture);
                 }
-                // Salvar nova foto
-                $picture = $request->file("picture")->store("cartas", "public");
+                $picture = $request->file("picture")->store("cards", "public");
                 $data["picture"] = $picture;
             }
             
             $card->fill($data);
             $card->save();
 
-            return redirect()->route("cartas.index");
+            return redirect()->route("cards.index");
         }
-        return view("cards.editar", [
+        return view("cards/edit", [
             "card" => $card
         ]);
     }
 
-    public function excluir(Request $request, Card $card){
+    public function delete(Request $request, Card $card){
         if ($request->isMethod("DELETE")){
             if($card->picture){
                 Storage::disk("public")->delete($card->picture);
             }
             $card->delete();
-            return redirect()->route("cartas.index");
+            return redirect()->route("cards.index");
         }
-        return view("cards.excluir", ["card" => $card]);
+        return view("cards/delete", ["card" => $card]);
     }
 }

@@ -10,22 +10,20 @@ Route::get('/', function () {
 
 Route::get('/login', [LoginController::class, 'index']);
 
-Route::post('/login', [LoginController::class,'autenticar'])->name('login');
+Route::post('/login', [LoginController::class,'authenticate'])->name('login');
 
 Route::get("/logout",[LoginController::class, "logout"])->name("logout");
 
-Route::get('/bemvindo', [LoginController::class, 'bemvindo'])->name('bemvindo');
+Route::get('/dashboard', [LoginController::class, 'dashboard'])->name('dashboard');
 
-Route::prefix("/cartas")->group(function(){
-    Route::get("/", [CardsController::class, "index"])->name("cartas.index");
+Route::prefix("/cards")->group(function(){
+    Route::get("/", [CardsController::class, "index"])->name("cards.index");
 
-    Route::get("/inserir", [CardsController::class, "inserir"])->name("cartas.inserir");
+    Route::get("/create", [CardsController::class, "create"])->name("cards.create");
 
-    Route::post("/inserir", [CardsController::class, "inserir"])->name("cartas.gravar");
-    Route::get("/editar/{card}", [CardsController::class, "editar"])->name("cartas.editar");
-    Route::put("/editar/{card}", [CardsController::class, "editar"])->name("cartas.atualizar");
-    Route::get("/excluir/{card}", [CardsController::class, "excluir"])->name("cartas.excluir");
-    Route::delete("/excluir/{card}", [CardsController::class, "excluir"])->name("cartas.deletar");
-
-
+    Route::post("/create", [CardsController::class, "create"])->name("cards.store");
+    Route::get("/edit/{card}", [CardsController::class, "edit"])->name("cards.edit");
+    Route::put("/edit/{card}", [CardsController::class, "edit"])->name("cards.update");
+    Route::get("/delete/{card}", [CardsController::class, "delete"])->name("cards.delete");
+    Route::delete("/delete/{card}", [CardsController::class, "delete"])->name("cards.destroy");
 });

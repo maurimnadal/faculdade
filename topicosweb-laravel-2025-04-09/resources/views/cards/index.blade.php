@@ -1,38 +1,38 @@
-<h1>Cartas</h1>
+<h1>Cards</h1>
 
 <div>
-    <a href="{{ route("cartas.inserir") }}">👌 Adicionar Carta</a>
+    <a href="{{ route("cards.create") }}">👌 Add Card</a>
 </div>
 
 <div>
-    Aqui fica a lista de cartas
+    Card list goes here
 </div>
 
 <div>
     <table border="1">
         <tr>
             <th>ID</th>
-            <th>Nome</th>
-            <th>Tipo</th>
-            <th>Foto</th>
-            <th>Descrição</th>
-            <th>Editar</th>
-            <th>Excluir</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Image</th>
+            <th>Description</th>
+            <th>Edit</th>
+            <th>Delete</th>
         </tr>
         @foreach ($cards as $card)
         <tr>
             <td>{{ $card["id"] }}</td>
             <td>{{ $card["name"] }}</td>
             <td>
-                <img src="{{ asset("storage/energias/".$card["type"].".png") }}" width="22">
+                <img src="{{ asset("storage/energies/".$card["type"].".png") }}" width="22">
             </td>
             <td><img src="{{ asset("storage/".$card["picture"])}}" width="40"></td>
             <td>{{ $card["description"] }}</td>
             <td>
-                <a href="{{ route("cartas.editar", $card["id"]) }}">Editar</a>
+                <a href="{{ route("cards.edit", $card->id) }}">Edit</a>
             </td>
             <td>
-                <a href="{{ route("cartas.excluir", $card["id"]) }}">Deletar</a>
+                <a href="{{ route("cards.delete", $card->id) }}">Delete</a>
             </td>
         </tr>
         @endforeach
