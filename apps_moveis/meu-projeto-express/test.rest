@@ -1,0 +1,18 @@
+@host=http://localhost:3000
+
+GET {{host}}
+
+### LOGIN
+
+
+POST {{host}}/login
+Content-Type: application/json
+
+{
+    "login": "user", "pwd": "user123"
+}
+
+### GET dashboard
+
+GET {{host}}/dashboard
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzc3MzI5NDk2LCJleHAiOjE3NzczMzAzOTZ9.WV-bl989_bRDmK15qeOxDcA2Y4icC2BhfDwbk8AJsqA
