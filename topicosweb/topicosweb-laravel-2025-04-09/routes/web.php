@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApiCardsController;
 use App\Http\Controllers\CardsController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
@@ -26,4 +27,11 @@ Route::prefix("/cards")->group(function(){
     Route::put("/edit/{card}", [CardsController::class, "edit"])->name("cards.update");
     Route::get("/delete/{card}", [CardsController::class, "delete"])->name("cards.delete");
     Route::delete("/delete/{card}", [CardsController::class, "delete"])->name("cards.destroy");
+});
+
+Route::prefix("/api/cards")-> group(function(){
+    Route::get("/", [ApiCardsController::class, 'index']);
+    Route::get("/{card}", [ApiCardsController::class, "show"]);
+
+    Route::post("/", [ApiCardsController::class, "store"]);
 });
