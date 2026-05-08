@@ -1,0 +1,72 @@
+ideia inicial:
+
+eu quero criar um site que cataloga os artistas de música favoritos dos usuarios e os ordena a partir de suas avaliações 
+por meio de estrelas (0 a 5), e mostra os artistas mais populares e com as melhores avaliações, sendo possivel ordenar para ver os
+menos populares e as piores avaliações
+
+os requisitos para o desenvolvimento do sistema são os seguintes:
+
+Stack Tecnológica: PHP laravel no back-end, HTML e CSS para estruturação/estilização (blade), e JavaScript (Vanilla ou Framework) para interações no front-end.
+
+Persistência de Dados: O sistema deve salvar informações. O uso de um banco de dados (ex: MySQL, SQLite) ou persistência em arquivos é obrigatório.
+
+Operações CRUD: O sistema deve permitir Criar (Create), Ler/Listar (Read), Atualizar (Update) e Excluir (Delete) registros.
+
+Validação: Pelo menos uma etapa de validação de formulários no lado do cliente (via JS) e no lado do servidor (via PHP).
+
+Interface UI/UX: Um layout organizado, funcional e responsivo (mesmo que simples). Adicionar alguma interatividade com o usuário.
+
+
+Plano de Desenvolvimento:
+
+Visão Geral do Projeto: Sistema de Curadoria e Avaliação Musical
+O projeto consiste em uma aplicação web interativa onde os usuários podem catalogar, descobrir e avaliar artistas musicais. A plataforma funciona como um ranking colaborativo, permitindo explorar o catálogo de artistas através de filtros (por artista ou gênero) e ordenações dinâmicas (maior/menor popularidade e melhores/piores avaliações médias).
+
+1. Entidades Principais e Persistência de Dados (Banco de Dados)
+Para atender ao requisito de persistência (MySQL ou SQLite), o sistema terá três entidades principais:
+
+Usuários: Quem faz a avaliação (exige um sistema simples de login/cadastro).
+
+Artistas: O catálogo em si (Nome, Gênero, Biografia curta, Imagem).
+
+Avaliações (Reviews): O relacionamento entre Usuário e Artista, contendo a nota de 0 a 5 estrelas.
+
+2. Mapeamento das Operações CRUD
+Para garantir que o requisito de CRUD seja cumprido, as funcionalidades serão divididas da seguinte forma:
+
+Create (Criar): Formulário para cadastrar novos artistas no catálogo e funcionalidade para o usuário registrar uma nova avaliação com estrelas.
+
+Read (Ler/Listar): Exibição do catálogo completo. Aqui entram as lógicas de filtragem (buscar por nome ou selecionar um gênero) e ordenação (SQL ou métodos nativos do Laravel para ordenar por média de notas e contagem de avaliações).
+
+Update (Atualizar): Opção para editar as informações cadastrais de um artista (ex: corrigir o gênero) ou permitir que um usuário altere sua nota caso mude de ideia sobre um artista.
+
+Delete (Excluir): Excluir um artista do sistema (apenas administradores/criadores do registro) e deletar avaliações.
+
+3. Casos de Uso e Regras de Negócio (Validações)
+Assim como em sistemas de gestão estruturados, é importante definir o que é permitido. Isso cobre o requisito de dupla validação:
+
+Validação Front-end (JavaScript): Ao enviar o formulário de avaliação, o JavaScript impede o envio se nenhuma estrela for selecionada. Ao cadastrar um artista, o JS verifica se os campos de Nome e Gênero não estão em branco antes de recarregar a página.
+
+Validação Back-end (PHP/Laravel): O Laravel receberá a requisição e garantirá a integridade dos dados usando Form Requests. Por exemplo: a nota deve ser estritamente um número inteiro entre 0 e 5, o nome do artista deve ser único no banco de dados, e o limite de caracteres para o gênero não deve ser excedido.
+
+4. Interface UI/UX (Blade, CSS e JS)
+O layout focará em uma navegação intuitiva:
+
+Página Inicial: Uma vitrine em formato de "Cards", onde cada card representa um artista, exibindo sua foto, gênero musical e a média atual de estrelas preenchidas visualmente.
+
+Interatividade (JS Vanilla):
+
+Um sistema visual interativo para dar a nota (as estrelas "acendem" ao passar o mouse por cima antes de clicar).
+
+Modais (Janelas Pop-up) para confirmar a exclusão de um artista (evitando exclusões acidentais).
+
+Responsividade: Uso de CSS (podendo usar Flexbox/Grid nativo ou um framework integrado ao Blade) para garantir que o catálogo se adapte bem tanto em telas de computador quanto em celulares.
+
+passo a passo:
+1. Set up the Laravel project - Initialize the project structure with all necessary files
+2. Create the database schema - Design migrations for Users, Artists, and Reviews
+3. Build the models and relationships - Set up Eloquent models with proper associations
+4. Create controllers and routes - Implement CRUD logic
+5. Design the Blade templates - Build the responsive card-based UI
+6. Implement the JavaScript - Interactive star rating, form validation, modals
+7. Full implementation - Set everything up from scratch
