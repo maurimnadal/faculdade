@@ -42,13 +42,13 @@
     .filter-group input:focus,
     .filter-group select:focus {
         outline: none;
-        border-color: #667eea;
-        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        border-color: #0056b3;
+        box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.1);
     }
 
     .filter-btn {
         padding: 10px 20px;
-        background: #667eea;
+        background: #0056b3;
         color: white;
         border: none;
         border-radius: 5px;
@@ -58,7 +58,7 @@
     }
 
     .filter-btn:hover {
-        background: #764ba2;
+        background: #001f3f;
         transform: translateY(-2px);
     }
 
@@ -81,14 +81,14 @@
 
     .artist-card:hover {
         transform: translateY(-5px);
-        box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        box-shadow: 0 10px 30px rgba(0, 86, 179, 0.3);
     }
 
     .artist-image {
         width: 100%;
         height: 250px;
         object-fit: cover;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #0056b3 0%, #001f3f 100%);
     }
 
     .artist-info {
@@ -106,7 +106,7 @@
     }
 
     .artist-genre {
-        color: #667eea;
+        color: #0056b3;
         font-weight: 600;
         font-size: 14px;
         margin-bottom: 15px;
@@ -162,21 +162,21 @@
     }
 
     .btn-view {
-        background: #667eea;
+        background: #0056b3;
         color: white;
     }
 
     .btn-view:hover {
-        background: #764ba2;
+        background: #001f3f;
     }
 
     .btn-delete {
-        background: #f94144;
+        background: #e63946;
         color: white;
     }
 
     .btn-delete:hover {
-        background: #d83236;
+        background: #d62828;
     }
 
     .pagination {
@@ -193,18 +193,18 @@
         border-radius: 5px;
         text-decoration: none;
         background: white;
-        color: #667eea;
+        color: #0056b3;
         font-weight: 600;
         transition: all 0.3s;
     }
 
     .pagination a:hover {
-        background: #667eea;
+        background: #0056b3;
         color: white;
     }
 
     .pagination .active {
-        background: #667eea;
+        background: #0056b3;
         color: white;
     }
 
@@ -217,7 +217,7 @@
     }
 
     .empty-state h2 {
-        color: #667eea;
+        color: #0056b3;
         margin-bottom: 10px;
     }
 
@@ -377,7 +377,6 @@
         </div>
     </div>
 </div>
-@endif
 
 @endsection
 

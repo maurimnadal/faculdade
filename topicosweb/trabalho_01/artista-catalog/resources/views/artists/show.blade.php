@@ -29,13 +29,13 @@
     }
 
     .detail-info h1 {
-        color: #667eea;
+        color: #0056b3;
         font-size: 32px;
         margin-bottom: 10px;
     }
 
     .detail-genre {
-        color: #764ba2;
+        color: #001f3f;
         font-weight: 600;
         font-size: 16px;
         text-transform: uppercase;
@@ -96,23 +96,23 @@
     }
 
     .btn-primary {
-        background: #667eea;
+        background: #0056b3;
         color: white;
     }
 
     .btn-primary:hover {
-        background: #764ba2;
+        background: #001f3f;
         transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        box-shadow: 0 5px 15px rgba(0, 86, 179, 0.4);
     }
 
     .btn-danger {
-        background: #f94144;
+        background: #e63946;
         color: white;
     }
 
     .btn-danger:hover {
-        background: #d83236;
+        background: #d62828;
     }
 
     .btn-secondary {
@@ -132,11 +132,11 @@
     }
 
     .reviews-section h2 {
-        color: #667eea;
+        color: #0056b3;
         font-size: 24px;
         margin-bottom: 30px;
         padding-bottom: 15px;
-        border-bottom: 2px solid #667eea;
+        border-bottom: 2px solid #0056b3;
     }
 
     .review-form {
@@ -144,7 +144,7 @@
         padding: 25px;
         border-radius: 8px;
         margin-bottom: 30px;
-        border-left: 4px solid #667eea;
+        border-left: 4px solid #0056b3;
     }
 
     .review-form p {
@@ -177,7 +177,7 @@
 
     .review-form button {
         padding: 10px 20px;
-        background: #667eea;
+        background: #0056b3;
         color: white;
         border: none;
         border-radius: 5px;
@@ -187,7 +187,7 @@
     }
 
     .review-form button:hover {
-        background: #764ba2;
+        background: #001f3f;
     }
 
     .reviews-list {
@@ -200,7 +200,7 @@
         background: #f9f9f9;
         padding: 20px;
         border-radius: 8px;
-        border-left: 4px solid #667eea;
+        border-left: 4px solid #0056b3;
     }
 
     .review-header {
@@ -212,7 +212,7 @@
 
     .review-author {
         font-weight: 600;
-        color: #667eea;
+        color: #0056b3;
     }
 
     .review-date {
@@ -231,7 +231,7 @@
     }
 
     .review-delete {
-        background: #f94144;
+        background: #e63946;
         color: white;
         border: none;
         padding: 5px 10px;
@@ -242,7 +242,7 @@
     }
 
     .review-delete:hover {
-        background: #d83236;
+        background: #d62828;
     }
 
     .empty-reviews {
@@ -367,8 +367,10 @@
             @endif
 
             <div class="detail-actions">
-                <a href="{{ route('artists.edit', $artist) }}" class="btn btn-primary">✏️ Editar</a>
-                <button type="button" class="btn btn-danger" onclick="showDeleteModal()">🗑️ Deletar</button>
+                @auth
+                    <a href="{{ route('artists.edit', $artist) }}" class="btn btn-primary">✏️ Editar</a>
+                    <button type="button" class="btn btn-danger" onclick="showDeleteModal()">🗑️ Deletar</button>
+                @endauth
                 <a href="{{ route('artists.index') }}" class="btn btn-secondary">← Voltar</a>
             </div>
         </div>
@@ -402,7 +404,7 @@
             </form>
         </div>
     @else
-        <div style="background: #e8f0ff; padding: 20px; border-radius: 8px; margin-bottom: 30px; text-align: center; color: #667eea; font-weight: 600;">
+        <div style="background: #e8f0ff; padding: 20px; border-radius: 8px; margin-bottom: 30px; text-align: center; color: #0056b3; font-weight: 600;">
             <a href="{{ route('login') }}">Faça login</a> para avaliar este artista.
         </div>
     @endauth

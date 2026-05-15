@@ -13,7 +13,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #0056b3 0%, #001f3f 100%);
             min-height: 100vh;
             color: #333;
         }
@@ -42,7 +42,7 @@
         .logo {
             font-size: 28px;
             font-weight: bold;
-            color: #667eea;
+            color: #0056b3;
             text-decoration: none;
         }
 
@@ -60,7 +60,7 @@
         }
 
         nav a:hover {
-            color: #667eea;
+            color: #0056b3;
         }
 
         .btn {
@@ -74,23 +74,23 @@
         }
 
         .btn-primary {
-            background: #667eea;
+            background: #0056b3;
             color: white;
         }
 
         .btn-primary:hover {
-            background: #764ba2;
+            background: #001f3f;
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 5px 15px rgba(0, 86, 179, 0.4);
         }
 
         .btn-danger {
-            background: #f94144;
+            background: #e63946;
             color: white;
         }
 
         .btn-danger:hover {
-            background: #d83236;
+            background: #d62828;
         }
 
         main {
@@ -248,7 +248,7 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2026 Catálogo de Artistas Musicais. Desenvolvido com ❤️</p>
+            <p>&copy; 2026 Catálogo de Artistas Musicais</p>
         </div>
     </footer>
 
