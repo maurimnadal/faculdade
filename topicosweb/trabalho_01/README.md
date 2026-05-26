@@ -1,80 +1,115 @@
-# Catálogo de Artistas Musicais 🎵
+# 🎵 Catálogo de Artistas Musicais
 
-Sistema web de curadoria e avaliação de artistas musicais com ranking colaborativo.
+> Sistema web de curadoria e avaliação colaborativa de artistas musicais com ranking dinâmico
 
-## ✅ Status: PRONTO PARA USO
 
-O projeto está 100% funcional com todas as funcionalidades solicitadas implementadas.
 
-## 🚀 Quick Start
+## 📚 Documentação
 
-```bash
-cd artista-catalog
+| Documento | Descrição |
+|-----------|----------|
+| **[DOCUMENTACAO.md](./DOCUMENTACAO.md)** | Stack tecnológica, arquitetura e componentes |
+| **[SETUP.md](./SETUP.md)** | Passo a passo de instalação e execução |
 
-# Iniciar servidor
-php artisan serve
 
-# Acessar em http://127.0.0.1:8000
-```
+## 🎯 Objetivo do Sistema
 
-## 📖 Documentação Completa
+Proporcionar uma plataforma interativa onde usuários podem:
 
-Veja [DOCUMENTACAO.md](./DOCUMENTACAO.md) para:
-- Estrutura do projeto
-- Funcionalidades implementadas
-- Banco de dados
-- Rotas e endpoints
-- Como executar
-- Tecnologias utilizadas
+- 🎵 **Catalogar** artistas musicais favoritos
+- ⭐ **Avaliar** artistas com sistema de 5 estrelas
+- 🔍 **Explorar** o catálogo através de filtros e buscas
+- 📊 **Visualizar** ranking colaborativo em tempo real
+- 🏆 **Descobrir** artistas mais populares e bem avaliados
 
-## 🎯 Funcionalidades Principais
 
-✅ Catalogar artistas musicais  
-✅ Avaliar artistas com sistema de 5 estrelas  
-✅ Filtrar por nome e gênero  
-✅ Ordenar por: Melhores/Piores avaliações e Mais/Menos populares  
-✅ Validação dupla (cliente + servidor)  
-✅ Interface responsiva e intuitiva  
-✅ Sistema de autenticação  
-✅ Upload de imagens  
-✅ CRUD completo (Create, Read, Update, Delete)  
 
-## 👤 Teste Rápido
+## ✨ Funcionalidades Principais
 
-**Email:** test@example.com  
-**Senha:** password
+### Para Usuários Não Autenticados
+- ✅ Visualizar catálogo de artistas
+- ✅ Filtrar por nome, gênero e ordenação
+- ✅ Ver detalhes e avaliações de cada artista
+- ✅ Criar conta de usuário
 
-## 📁 Estrutura
+### Para Usuários Autenticados
+- ✅ Avaliar artistas (0-5 estrelas)
+- ✅ Criar novos artistas no catálogo
+- ✅ Editar artistas cadastrados
+- ✅ Deletar artistas e avaliações
+- ✅ Atualizar próprias avaliações
 
-```
-artista-catalog/
-├── app/                 # Lógica da aplicação
-├── database/            # Migrações e seeders
-├── resources/views/     # Templates Blade
-├── routes/              # Rotas
-└── storage/             # Imagens do artistas
-```
+### Sistema de Filtros e Ordenação
+- ✅ Busca por nome de artista
+- ✅ Filtro por gênero musical
+- ✅ Ordenação por melhores avaliações
+- ✅ Ordenação por piores avaliações
+- ✅ Ordenação por mais populares
+- ✅ Ordenação por menos populares
 
-## 🛠️ Stack Tecnológico
+### Qualidade de Código
+- ✅ Validação dupla (cliente + servidor)
+- ✅ Interface responsiva e moderna
+- ✅ Interatividade com JavaScript
+- ✅ Sistema robusto de autenticação
+- ✅ Upload seguro de imagens
 
-- **Backend:** Laravel 12 (PHP)
-- **Frontend:** Blade + HTML/CSS + JavaScript
-- **Database:** SQLite
-- **Auth:** Laravel built-in
 
-## 📝 Requisitos do Projeto Atendidos
 
-- [x] Stack: Laravel + Blade + JavaScript
-- [x] Persistência de dados (SQLite)
-- [x] CRUD completo (artistas e avaliações)
-- [x] Validação (cliente + servidor)
-- [x] Interface responsiva
-- [x] Interatividade (star rating, modais)
-- [x] Filtros e ordenação dinâmica
-- [x] Autenticação
+## 🎨 Interface
 
----
+### Página Principal
+- Grid responsivo de artistas em cards
+- Imagem, nome, gênero e estrelas de avaliação
+- Barra de filtros intuitiva
+- Paginação de resultados
 
-**Desenvolvido em:** Maio de 2026  
-**Disciplina:** Tópicos Web  
-**Aluno:** Mauricio  
+### Página de Detalhes
+- Informações completas do artista
+- Lista de avaliações de usuários
+- Formulário interativo de avaliação com hover de estrelas
+- Botões de edição e exclusão
+
+### Páginas de Autenticação
+- Formulário de login
+- Formulário de cadastro
+- Validação visual em tempo real
+
+
+
+## 📊 Dados Inclusos
+
+O projeto vem pré-carregado com:
+
+- **6 Artistas de Exemplo:** The Beatles, David Bowie, Miles Davis, Aretha Franklin, Pink Floyd, Ella Fitzgerald
+- **3 Usuários de Teste:** Com avaliações aleatórias
+- **Dados Relacionados:** Reviews e histórico de avaliações
+
+
+
+## 🔐 Segurança
+
+- ✅ Autenticação integrada do Laravel
+- ✅ Hash de senhas com bcrypt
+- ✅ Proteção CSRF em todos os formulários
+- ✅ Validação no servidor (não confia apenas em JS)
+- ✅ Autorização em ações (apenas o criador pode deletar)
+
+
+## 📱 Responsividade
+
+- ✅ Design mobile-first
+- ✅ Testado em dispositivos pequenos, médios e grandes
+- ✅ Grid layout adaptável
+- ✅ Navegação otimizada para toque
+
+
+## 🛠️ Próximos Passos
+
+Você pode:
+
+1. **Entender a arquitetura** → **Leia** [DOCUMENTACAO.md](./DOCUMENTACAO.md)
+2. **Instalar o projeto** → **Siga** [SETUP.md](./SETUP.md)
+3. **Explorar o código** → **Navegue pelos diretórios `app/` e `resources/`**
+
+

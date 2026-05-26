@@ -10,9 +10,9 @@ class ArtistController extends Controller
 {
     public function index(Request $request)
     {
-        $sortBy = $request->get('sort', 'rating_desc');
-        $genre = $request->get('genre');
-        $search = $request->get('search');
+        $sortBy = $request->input('sort', 'rating_desc');
+        $genre = $request->input('genre');
+        $search = $request->input('search');
 
         $query = Artist::withCount('reviews')
             ->with('reviews')

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Review;
 use App\Http\Requests\StoreReviewRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ReviewController extends Controller
@@ -25,14 +26,14 @@ class ReviewController extends Controller
         return redirect()->back()->with('success', 'Avaliacao salva com sucesso!');
     }
 
-    public function destroy(Review $review)
+    public function destroy(Review $review, Request $request)
     {
         if ($review->user_id !== Auth::id()) {
             abort(403);
         }
         $review->delete();
 
-        if (request()->wantsJson()) {
+        if ($request->wantsJson()) {
             return response()->json(['success' => true, 'message' => 'Avaliacao removida!']);
         }
 

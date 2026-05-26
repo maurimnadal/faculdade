@@ -102,7 +102,7 @@
     }
 
     .btn-submit:hover {
-        background: #764ba2;
+        background: #001f3f;
         transform: translateY(-2px);
         box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
     }

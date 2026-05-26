@@ -1,22 +1,58 @@
-# 🎵 Catálogo de Artistas Musicais - Documentação
+# 📚 Stack Tecnológica e Arquitetura
 
-## ✅ Projeto Concluído com Sucesso!
+> Documentação técnica do projeto - Stack, componentes e relacionamentos
 
-Um aplicativo web completo para catalogar, avaliar e explorar artistas musicais com sistema de ranking colaborativo.
+📖 **Voltar para:** [README.md](./README.md) | [SETUP.md](./SETUP.md)
 
----
 
-## 🏗️ Arquitetura do Projeto
 
-### Stack Tecnológica
-- **Backend:** Laravel 12 (PHP)
-- **Frontend:** Blade Templates + HTML/CSS + JavaScript Vanilla
-- **Banco de Dados:** SQLite
-- **Autenticação:** Laravel Auth (built-in)
+## 🏗️ Stack Tecnológica
 
----
+### Backend
+| Componente | Versão | Descrição |
+|-----------|--------|----------|
+| **PHP** | 8.2+| Linguagem de programação |
+| **Laravel** | 12+| Framework web completo |
+| **Composer** | 2.9.3+ | Gerenciador de dependências |
+| **Eloquent ORM** | Builtin | Mapeamento objeto-relacional |
 
-## 📁 Estrutura de Diretórios
+### Frontend
+| Componente | Descrição |
+|-----------|----------|
+| **Blade** | Template engine do Laravel |
+| **HTML5** | Marcação semântica |
+| **CSS3** | Estilos, Grid, Flexbox, Gradientes |
+| **JavaScript Vanilla** | Interatividade sem dependências |
+
+### Banco de Dados
+| Componente | Versão | Descrição |
+|-----------|--------|----------|
+| **SQLite** | 3.x | Banco de dados leve e portável |
+| **Migrations** | Larvel | Controle de versão do schema |
+| **Seeders** | Laravel | População inicial de dados |
+
+### Autenticação
+| Componente | Descrição |
+|-----------|----------|
+| **Laravel Auth** | Sistema nativo de autenticação |
+| **Bcrypt** | Hashing seguro de senhas |
+| **Session Middleware** | Gerenciamento de sessões |
+
+### Segurança
+| Feature | Implementação |
+|--------|---------------|
+| **CSRF Protection** | @csrf em formulários |
+| **SQL Injection** | Eloquent com placeholders |
+| **Password Hashing** | Bcrypt automático |
+| **Authorization** | Middleware e policies |
+
+
+
+## 🏛️ Arquitetura MVC
+
+
+
+## � Estrutura de Diretórios
 
 ```
 artista-catalog/
@@ -52,11 +88,11 @@ artista-catalog/
     └── web.php                            # Rotas da aplicação
 ```
 
----
 
-## 🗄️ Banco de Dados
 
-### Tabelas Criadas
+## 🗄️ Banco de Dados (SQLite)
+
+### Schema e Relacionamentos
 
 #### `users`
 - id (PK)
@@ -81,154 +117,321 @@ artista-catalog/
 - timestamps
 - unique constraint (user_id, artist_id)
 
----
+### Índices e Constraints
 
-## 🎯 Funcionalidades Implementadas
+```sql
+-- Unique constraint em (user_id, artist_id)
+ALTER TABLE reviews ADD UNIQUE(user_id, artist_id);
 
-### 1. **Listagem e Exploração** ✅
-- Exibição em cards responsivos com imagem, nome, gênero e estrelas
-- Sistema de filtros:
-  - Busca por nome de artista
-  - Filtro por gênero
-  - Ordenação dinâmica:
-    - Melhores avaliações
-    - Piores avaliações
-    - Mais populares
-    - Menos populares
-- Paginação de resultados
+-- Foreign keys com cascade
+ALTER TABLE reviews 
+ADD CONSTRAINT fk_user 
+FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE;
 
-### 2. **Cadastro de Artistas** ✅
-- Formulário para criar novos artistas
-- Upload de imagem
-- Validação dupla:
-  - **Cliente (JavaScript):** Campos obrigatórios
-  - **Servidor (Laravel FormRequest):**
-    - Nome único no banco
-    - Limite de caracteres
-    - Validação de imagem (JPEG, PNG, GIF)
-
-### 3. **Sistema de Avaliações** ✅
-- Interface interativa com 5 estrelas
-- Hover dinâmico (estrelas "acendem")
-- Validação: apenas usuários autenticados
-- Atualização ou criação de avaliação
-- Cálculo automático de média de ratings
-- Contador de avaliações por artista
-
-### 4. **Edição e Exclusão** ✅
-- Editar dados do artista
-- Deletar artista com confirmação modal
-- Deletar avaliação própria
-
-### 5. **Autenticação** ✅
-- Login/Cadastro de usuários
-- Proteção de rotas com middleware `auth`
-- Sem autenticação: pode visualizar mas não avaliar/criar
-
-### 6. **Interface Responsiva** ✅
-- Design gradiente moderno (roxo/azul)
-- Grid layout adaptável para mobile/tablet/desktop
-- Cards com efeito hover
-- Modais para confirmações
-- Validação em tempo real
-
----
-
-## 🔐 Validações Implementadas
-
-### Validação Front-End (JavaScript)
-```javascript
-// Avaliações
-- Verifica se estrela foi selecionada
-- Previne envio sem nota
-
-// Artistas
-- Nome obrigatório
-- Gênero obrigatório
-- Preview de imagem
+ALTER TABLE reviews 
+ADD CONSTRAINT fk_artist 
+FOREIGN KEY (artist_id) REFERENCES artists(id) ON DELETE CASCADE;
 ```
 
-### Validação Back-End (Laravel)
+
+
+## 🔄 Relacionamentos Eloquent
+
+### User → Reviews (1:N)
 ```php
-// StoreArtistRequest
-- name: required, unique, max 255
-- genre: required, max 100
-- biography: nullable, max 1000
-- image: nullable, image, max 2MB
-
-// StoreReviewRequest
-- artist_id: required, exists in artists
-- rating: required, integer 0-5
+public function reviews() {
+    return $this->hasMany(Review::class);
+}
 ```
 
----
+### Artist → Reviews (1:N)
+```php
+public function reviews() {
+    return $this->hasMany(Review::class);
+}
+```
 
-## 🚀 Como Executar
+### Review → User (N:1)
+```php
+public function user() {
+    return $this->belongsTo(User::class);
+}
+```
 
-### Pré-requisitos
-- PHP 8.2+
-- Composer
-- SQLite (ou MySQL)
+### Review → Artist (N:1)
+```php
+public function artist() {
+    return $this->belongsTo(Artist::class);
+}
+```
 
-### Passos
 
-1. **Navegar até o diretório:**
-   ```bash
-   cd "c:\Users\mauricio.141205\Documents\faculdade\topicosweb\trabalho_01\artista-catalog"
-   ```
 
-2. **Instalar dependências:**
-   ```bash
-   composer install
-   ```
+## 💻 Componentes Principais
 
-3. **Copiar arquivo de ambiente:**
-   ```bash
-   copy .env.example .env
-   ```
+### Controllers (Lógica de Negócio)
 
-4. **Gerar chave da aplicação:**
-   ```bash
-   php artisan key:generate
-   ```
+#### ArtistController
+- `index()` - Listar com filtros e ordenação
+- `create()` - Formulário novo artista
+- `store()` - Validar e salvar
+- `show()` - Detalhes e avaliações
+- `edit()` - Formulário edição
+- `update()` - Validar e atualizar
+- `destroy()` - Deletar com autorização
 
-5. **Criar banco de dados SQLite:**
-   ```bash
-   touch database/database.sqlite
-   ```
+#### ReviewController
+- `store()` - Criar/atualizar avaliação
+- `destroy()` - Deletar avaliação própria
 
-6. **Rodar migrações:**
-   ```bash
-   php artisan migrate
-   ```
+### Form Requests (Validação)
 
-7. **Popular dados de exemplo:**
-   ```bash
-   php artisan db:seed
-   ```
+#### StoreArtistRequest
+Usada em **CREATE** (POST /artists) e **UPDATE** (PUT /artists/{id})
+```php
+'name' => ['required', 'string', 'max:255', 'unique:artists'],
+'genre' => ['required', 'string', 'max:100'],
+'biography' => ['nullable', 'string', 'max:1000'],
+'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
+```
 
-8. **Criar link de storage:**
-   ```bash
-   php artisan storage:link
-   ```
+**Mensagens Personalizadas (em português):**
+```php
+'name.required' => 'O nome do artista eh obrigatorio.',
+'name.unique' => 'Este artista ja existe no catalogo.',
+'genre.required' => 'O genero musical eh obrigatorio.',
+'image.image' => 'O arquivo deve ser uma imagem valida.',
+```
 
-9. **Iniciar servidor:**
-   ```bash
-   php artisan serve
-   ```
+#### StoreReviewRequest
+```php
+'artist_id' => ['required', 'exists:artists,id'],
+'rating' => ['required', 'integer', 'min:0', 'max:5'],
+```
 
-10. **Acessar:** http://127.0.0.1:8000
+**Mensagens Personalizadas (em português):**
+```php
+'rating.required' => 'Voce deve selecionar uma nota.',
+'rating.min' => 'A nota deve estar entre 0 e 5 estrelas.',
+'rating.max' => 'A nota deve estar entre 0 e 5 estrelas.',
+```
 
----
+### Models (Dados e Lógica)
 
-## 👤 Credenciais de Teste
+#### Artist
+- Relacionamento com Reviews
+- Método `averageRating()` - Calcula média
+- Método `reviewCount()` - Conta avaliações
 
-**Email:** test@example.com  
-**Senha:** password
+#### Review
+- Relacionamento com User e Artist
+- Atributos: user_id, artist_id, rating
 
----
+#### User
+- Autenticação padrão Laravel
+- Relacionamento com Reviews
 
-## 📋 Rotas da Aplicação
+### Views (Apresentação)
+
+#### layouts/app.blade.php
+- Header com navegação
+- Footer com informações
+- Estilos CSS integrados
+- Flash messages
+
+#### artists/index.blade.php
+- Grid de cards responsivo
+- Barra de filtros
+- Sistema de paginação
+- Modal de confirmação
+
+#### artists/show.blade.php
+- Detalhes do artista
+- Seção de avaliações
+- Formulário interativo de rating
+- Lista de reviews
+
+
+
+## 🎯 Funcionalidades Técnicas Implementadas
+### 1. Query Optimization
+```php
+// Eager loading para evitar N+1
+Artist::withCount('reviews')
+    ->with('reviews')
+    ->selectRaw('artists.*, AVG(reviews.rating) as avg_rating')
+    ->leftJoin('reviews', 'artists.id', '=', 'reviews.artist_id')
+    ->groupBy('artists.id')
+    ->paginate(12);
+```
+
+### 2. Ordenação Dinâmica
+```php
+switch ($sortBy) {
+    case 'rating_desc':
+        $query->orderByRaw('AVG(reviews.rating) DESC NULLS LAST');
+        break;
+    case 'popularity_desc':
+        $query->orderBy('reviews_count', 'DESC');
+        break;
+    // ... mais opções
+}
+```
+
+### 3. Validação em Cascade
+- **Cliente:** JavaScript previne submissão inválida
+- **Servidor:** FormRequest valida tipos e regras
+- **Banco:** Constraints garantem integridade
+
+### 4. Filtros Combinados
+```php
+if ($search) {
+    $query->where('name', 'like', '%' . $search . '%');
+}
+if ($genre) {
+    $query->where('genre', $genre);
+}
+```
+
+### 5. Atualização Inteligente
+```php
+// updateOrCreate mantém uma única avaliação por usuário
+Review::updateOrCreate(
+    ['user_id' => Auth::id(), 'artist_id' => $artistId],
+    ['rating' => $rating]
+);
+```
+
+
+
+## 🎨 Componentes JavaScript
+
+### Star Rating Interativo
+```javascript
+// Hover dinâmico
+$('.star').hover(
+    function() { /* acende estrelas */ },
+    function() { /* apaga */ }
+);
+
+// Click para salvar
+$('.star').click(function() { /* envia rating */ });
+```
+
+### Modais de Confirmação
+```javascript
+function showConfirmModal(title, message, onConfirm) {
+    // Overlay + modal com botões
+    // Callback ao confirmar
+}
+```
+
+### Validação de Formulário
+```javascript
+// Verifica campos obrigatórios antes de enviar
+form.addEventListener('submit', (e) => {
+    if (!isValid()) e.preventDefault();
+});
+```
+
+### Preview de Imagem
+```javascript
+input.addEventListener('change', (e) => {
+    const reader = new FileReader();
+    reader.onload = (event) => {
+        preview.src = event.target.result;
+    };
+    reader.readAsDataURL(e.target.files[0]);
+});
+```
+
+
+## 🎨 Componentes CSS
+
+### Responsive Grid
+```css
+.artists-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+@media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+}
+```
+
+### Gradiente Moderno
+```css
+body {
+    background: linear-gradient(135deg, #0056b3 0%, #001f3f 100%);
+}
+```
+
+### Cards com Hover
+```css
+.artist-card {
+    transition: all 0.3s;
+}
+
+.artist-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 86, 179, 0.3);
+}
+```
+
+### Star Rating Visual
+```css
+.star.filled {
+    color: #ffc107;
+    text-shadow: 0 0 5px rgba(255, 193, 7, 0.5);
+}
+```
+
+
+
+## � Rotas da Aplicação (RESTful)
+
+### Artistas (Resource Routes)
+```
+GET    /artists              → index    (Listar)              ✅ Público
+GET    /artists/create       → create   (Formulário novo)    ✅ Público
+POST   /artists              → store    (Salvar novo)        🔒 Autenticado
+GET    /artists/{id}         → show     (Detalhes)           ✅ Público
+GET    /artists/{id}/edit    → edit     (Formulário edição)  ✅ Público
+PUT    /artists/{id}         → update   (Atualizar)          ⚠️ Sem proteção no servidor*
+DELETE /artists/{id}         → destroy  (Deletar)            🔒 Autenticado
+```
+
+*Nota: PUT não tem validação no servidor (qualquer um pode atualizar), mas apenas autenticados conseguem via frontend.
+
+### Avaliações
+```
+POST   /reviews              → store    (Criar/atualizar)    🔒 Autenticado
+DELETE /reviews/{id}         → destroy  (Deletar)            🔒 Autenticado (apenas própria avaliação)
+```
+
+### Autenticação
+```
+GET    /login                → Exibir formulário              ✅ Apenas visitantes
+POST   /login                → Processar login               ✅ Apenas visitantes
+POST   /logout               → Logout                        🔒 Autenticado
+GET    /register             → Exibir cadastro               ✅ Apenas visitantes
+POST   /register             → Processar cadastro            ✅ Apenas visitantes
+```
+
+### Middleware
+```
+auth      → Requer estar autenticado (login obrigatório)
+guest     → Requer NÃO estar autenticado (apenas para visitors)
+```
+
+
+
+
+
+
+### 📋 Descrição das Rotas da Aplicação
 
 ```
 GET  /                           → Listar artistas (index)
@@ -243,7 +446,11 @@ POST /reviews                    → Criar/atualizar avaliação (auth)
 DELETE /reviews/{id}             → Deletar avaliação (auth)
 ```
 
----
+
+## 📊 Tabelas SQL Criadas
+
+Todas as migrações estão em `database/migrations/`
+
 
 ## 🎨 Componentes de Interface
 
@@ -272,17 +479,18 @@ DELETE /reviews/{id}             → Deletar avaliação (auth)
 - Campos obrigatórios marcados com *
 - Botões Submit/Cancel
 
----
+
 
 ## ⚡ Tecnologias e Técnicas
 
-### Laravel Features
-- **Eloquent ORM** para modelos
-- **Query Builder** para filtros e ordenação
-- **Form Requests** para validação
-- **Blade Templates** para renderização
-- **Migrations** para versionamento DB
-- **Seeders** para dados de teste
+### Laravel Features Implementadas
+- **Eloquent ORM** para modelos e relacionamentos
+- **Query Builder** com filtros, busca e ordenação dinâmica
+- **Form Requests** para validação dupla (server-side)
+- **Blade Templates** para renderização com layouts compartilhados
+- **Migrations** para versionamento e controle de schema
+- **Database Seeders** para população inicial de dados
+- **Resource Routing** para rotas RESTful conventions
 
 ### JavaScript Vanilla
 - Event listeners para interatividade
@@ -298,26 +506,28 @@ DELETE /reviews/{id}             → Deletar avaliação (auth)
 - Transições suaves
 - Hover effects
 
----
+
 
 ## 🔄 Fluxo de Dados
 
-1. **Listar:** GET /artists → ArtistController@index → artists.index.blade
-2. **Buscar:** GET /artists?search=&genre=&sort= → Query dinâmica
-3. **Criar:** POST /artists → Validação → Artist::create() → redirect
-4. **Avaliar:** POST /reviews → Validação → Review::updateOrCreate()
-5. **Deletar:** DELETE /artists/{id} → Soft delete → artists.destroy()
+1. **Listar:** GET /artists → ArtistController@index → Eager loading + LEFT JOIN para ratings → artists.index.blade
+2. **Buscar/Filtrar:** GET /artists?search=&genre=&sort= → Query builder dinâmica com múltiplos WHERE
+3. **Criar:** POST /artists (auth) → StoreArtistRequest validation → Artist::create() + upload → redirect
+4. **Editar:** PUT /artists/{id} → StoreArtistRequest validation → $artist->update() + upload → redirect
+5. **Avaliar:** POST /reviews (auth) → Review::updateOrCreate() → Uma avaliação por user+artist (atualiza se existe)
+6. **Deletar Review:** DELETE /reviews/{id} (auth) → Verifica ownership → $review->delete()
+7. **Deletar Artist:** DELETE /artists/{id} (auth) → $artist->delete() → Cascade delete nas reviews
 
----
+
 
 ## 📊 Dados de Exemplo
 
 O seeder cria automaticamente:
-- 3 usuários de teste
-- 6 artistas musicais (The Beatles, David Bowie, Miles Davis, etc.)
-- Avaliações aleatórias entre usuários e artistas
+- **4 usuários de teste:** 1 hardcoded (test@example.com) + 3 via User::factory()
+- **6 artistas musicais:** The Beatles, David Bowie, Miles Davis, Aretha Franklin, Pink Floyd, Ella Fitzgerald
+- **Avaliações aleatórias:** Ratings de 3-5 estrelas (não 0-2), com 50% de chance por usuário criar review
 
----
+
 
 ## ✨ Recursos Extras Implementados
 
@@ -328,7 +538,7 @@ O seeder cria automaticamente:
 5. **Responsividade completa** - Funciona em qualquer tamanho de tela
 6. **Hover effects** - Feedback visual ao interagir
 
----
+
 
 ## 🐛 Tratamento de Erros
 
@@ -338,7 +548,7 @@ O seeder cria automaticamente:
 - Verificação de autorização
 - Handling de arquivos corrompidos
 
----
+
 
 ## 📝 Padrões Utilizados
 
@@ -347,8 +557,7 @@ O seeder cria automaticamente:
 - **DRY** - Evitar repetição com layouts e components
 - **SOLID** - Responsabilidade única em cada controller
 
----
+## 🚀 Para Começar
 
-**Data de Conclusão:** 07/05/2026  
-**Status:** ✅ 100% Funcional e Pronto para Uso
+👉 **Próximo passo:** Consulte [SETUP.md](./SETUP.md) para instalação passo a passo
 

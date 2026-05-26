@@ -1,303 +1,411 @@
-# 🔧 Guia Completo de Setup e Troubleshooting
+# 🔧 Setup e Execução do Projeto
 
-## Pré-requisitos Verificados
+> Guia passo a passo para instalar e executar o projeto localmente
 
-- ✅ PHP 8.2.12
-- ✅ Composer 2.9.3
-- ✅ Laravel 12.58.0
-- ✅ SQLite configurado
+📖 **Voltar para:** [README.md](./README.md) | [DOCUMENTACAO.md](./DOCUMENTACAO.md)
 
----
+## ⚙️ Pré-requisitos
+
+**Seu sistema deve ter:**
+
+- ✅ **PHP 8.2+** - [Download](https://www.php.net/)
+- ✅ **Composer** - [Download](https://getcomposer.org/)
+- ✅ **Git** (opcional) - [Download](https://git-scm.com/)
+- ✅ **SQLite** - Geralmente incluído no PHP
+
+**Versões testadas neste projeto:**
+- PHP 8.2.12
+- Composer 2.9.3
+- Laravel 12.58.0
+
+
 
 ## 📦 Instalação Passo a Passo
 
-### 1. Clonar/Acessar o Projeto
+### Passo 1: Navegar até o Projeto
+
+Abra o PowerShell ou Terminal e entre no diretório:
 
 ```powershell
-cd "C:\Users\mauricio.141205\Documents\faculdade\topicosweb\trabalho_01\artista-catalog"
+cd artista-catalog
 ```
 
-### 2. Instalar Dependências
+**Verificar que está no lugar certo:**
+```powershell
+ls    # Deve ver: app, database, resources, routes, etc.
+```
+
+### Passo 2: Instalar Dependências
+
+Baixe todas as bibliotecas do projeto:
 
 ```bash
 composer install
 ```
 
-**Se houver erro:** Certifique-se que o PHP 8.2+ está no PATH
+⏳ Pode levar alguns minutos...
 
-### 3. Configurar Ambiente
+**Se houver erro:** Certifique-se de que:
+- PHP está instalado e no PATH: `php --version`
+- Composer está instalado: `composer --version`
+
+### Passo 3: Configurar Variáveis de Ambiente
+
+Crie o arquivo `.env` baseado no exemplo:
 
 ```bash
-# Copiar arquivo de exemplo
 copy .env.example .env
+```
 
-# Gerar chave de aplicação
+Gere a chave de criptografia:
+
+```bash
 php artisan key:generate
 ```
 
-**Verificar:** O arquivo `.env` deve conter:
+✅ Agora o arquivo `.env` contém: `APP_KEY=base64:xxxxx`
+
+**Verificar configuração do banco de dados em `.env`:**
 ```
-APP_KEY=base64:...
 DB_CONNECTION=sqlite
+# (Isso está correto para SQLite)
 ```
 
-### 4. Preparar Banco de Dados
+### Passo 4: Preparar o Banco de Dados
+
+Crie o arquivo SQLite:
 
 ```bash
-# Criar arquivo SQLite
 touch database/database.sqlite
+```
 
-# Rodar migrações
+⚠️ **No Windows:** Use PowerShell - o `touch` está disponível no PS 7+, ou:
+
+```powershell
+New-Item -Path database\database.sqlite -ItemType File
+```
+
+Execute as migrações para criar as tabelas:
+
+```bash
 php artisan migrate
+```
 
-# Semear dados de teste
+Popule o banco com dados de teste:
+
+```bash
 php artisan db:seed
 ```
 
-### 5. Configurar Storage
+✅ Agora você tem:
+- 3 tabelas: `users`, `artists`, `reviews`
+- 6 artistas pré-carregados
+- 3 usuários de teste
+- Avaliações de exemplo
+
+### Passo 5: Configurar Storage (Upload de Imagens)
+
+Crie um link simbólico para o diretório de armazenamento:
 
 ```bash
-# Criar link simbólico para uploads
 php artisan storage:link
 ```
 
-### 6. Iniciar Servidor
+✅ Agora as imagens podem ser acessadas em `public/storage/`
+
+**Se houver erro de permissão no Windows:**
+```powershell
+php artisan storage:link --force
+```
+
+### Passo 6: Iniciar o Servidor Local
+
+Inicie o servidor de desenvolvimento:
 
 ```bash
 php artisan serve
 ```
 
-**Esperado:** 
+**Você verá:**
 ```
-INFO  Server running on [http://127.0.0.1:8000].
+   INFO  Server running on [http://127.0.0.1:8000].
 ```
 
----
+✅ **O projeto está rodando!**
 
-## 🐛 Problemas Comuns e Soluções
+### Passo 7: Acessar no Navegador
 
-### ❌ "Attribute [auth] does not exist"
+Abra seu navegador e visite:
 
-**Causa:** Erro na rota `Route::auth()` (não existe no Laravel moderno)
+```
+http://127.0.0.1:8000
+```
 
-**Solução:** Removido das rotas - já está corrigido
+
+## 🛑 Parar o Servidor
+
+Para encerrar o servidor de desenvolvimento:
+
+```bash
+# Pressione Ctrl + C no terminal
+```
+
+Ou feche a janela do terminal.
+
+
+
+
+
+
+## 🐛 Troubleshooting - Problemas Comuns
+
+### ❌ "Composer not recognized"
+
+**Problema:** Composer não está instalado ou no PATH
+
+**Solução:**
+1. Download Composer: https://getcomposer.org/
+2. Instale o instalador (composer-setup.exe)
+3. Reinicie o terminal e tente novamente: `composer --version`
 
 ### ❌ "Could not open input file: artisan"
 
-**Causa:** Comando rodado fora do diretório correto
+**Problema:** Você não está no diretório correto
 
-**Solução:** 
+**Solução:**
 ```powershell
-cd "C:\Users\mauricio.141205\Documents\faculdade\topicosweb\trabalho_01\artista-catalog"
+# Verifique onde você está
+pwd
+
+# Navegue para o caminho do projeto, ex:
+cd "C:\Users\Micro\Documents\faculdade\topicosweb\trabalho_01\artista-catalog"
+
+# Verifique que vê os arquivos do projeto
+ls
+
+# Agora tente
 php artisan serve
 ```
 
 ### ❌ "Base table or view not found: artists"
 
-**Causa:** Migrações não foram executadas
+**Problema:** As tabelas do banco não foram criadas
 
 **Solução:**
 ```bash
-php artisan migrate --force
+# Crie o arquivo do banco
+New-Item -Path database\database.sqlite -ItemType File
+
+# Rode as migrações
+php artisan migrate
+
+# Popule com dados
 php artisan db:seed
 ```
 
-### ❌ "Call to undefined function auth()"
+### ❌ "Key has already been generated"
 
-**Causa:** Middleware de autenticação não configurado
+**Problema:** APP_KEY já existe no `.env`
 
-**Solução:** Já está configurado em `routes/web.php`
+**Solução:** Isso é normal, significa que a chave já foi gerada. Continue com o próximo passo.
 
-### ❌ Imagens não carregam
+### ❌ Imagens não carregam ou upload não funciona
 
-**Causa:** Storage link não criado
+**Problema:** Storage link não foi criado
 
 **Solução:**
 ```bash
 php artisan storage:link
 
-# Se ainda não funcionar:
+# Se ainda não funcionar, force:
 php artisan storage:link --force
 ```
 
-### ❌ Erro 403 ao deletar artista
+### ❌ Erro de permissão ao criar storage link (Windows)
 
-**Causa:** Falta de CSRF token no formulário DELETE
+**Problema:** Falta de permissões administrativas
 
-**Solução:** Já incluído em todas as formas com `@csrf` e `@method('DELETE')`
+**Solução:**
+1. Abra PowerShell como **Administrador**
+2. Navegue ao projeto
+3. Execute: `php artisan storage:link --force`
 
-### ❌ Banco de dados corrompido
+### ❌ Banco de dados corrompido ou com erro
+
+**Problema:** Migrações falharam ou dados inconsistentes
 
 **Solução:**
 ```bash
-# Limpar tudo
+# Limpe tudo (cuidado!)
 php artisan migrate:reset
 
-# Recriar e popular
+# Recrie e popule
 php artisan migrate
 php artisan db:seed
 ```
 
-### ❌ Erro de permissão de arquivo
+### ❌ "SQLSTATE[HY000]: General error: 1 file is not a database"
 
-**Solução (Windows):**
+**Problema:** Arquivo database.sqlite está corrompido ou vazio
+
+**Solução:**
 ```powershell
-# Dar permissão de escrita
-icacls "storage" /grant Everyone:(OI)(CI)F /T
-icacls "bootstrap\cache" /grant Everyone:(OI)(CI)F /T
+# Delete o arquivo
+Remove-Item database\database.sqlite
+
+# Recrie
+New-Item -Path database\database.sqlite -ItemType File
+
+# Rode migrações
+php artisan migrate
+php artisan db:seed
 ```
 
----
+### ❌ Erro ao fazer login
 
-## ✅ Verificação Rápida
+**Problema:** Credenciais de teste não funcionam
+
+**Solução:**
+```bash
+# Certifique-se que o seeder foi executado
+php artisan db:seed
+
+# Ou recrie o usuário via Tinker
+php artisan tinker
+# Digite: \App\Models\User::create(['name'=>'Test','email'=>'test@example.com','password'=>Hash::make('password')])
+```
+
+## 🔍 Verificação de Saúde do Projeto
+
+Execute estes comandos para verificar se tudo está funcionando:
 
 ```bash
-# Verificar status da aplicação
+# Ver informações do projeto
 php artisan about
 
-# Listar rotas
+# Listar todas as rotas
 php artisan route:list
 
-# Verificar migrações
+# Verificar status das migrações
 php artisan migrate:status
 
-# Testar conexão com DB
+# Testar conexão com banco de dados
 php artisan tinker
 # Digite: DB::connection()->getPDO()
-# Deve retornar um objeto PDO
+# Deve retornar um objeto PDO (sucesso!)
 ```
 
----
+**Se todos os comandos rodarem sem erro, tudo está funcionando!**
 
-## 🌍 Acessar a Aplicação
 
-1. **Após `php artisan serve`**, acesse:
-   ```
-   http://127.0.0.1:8000
-   ```
 
-2. **Login com usuário de teste:**
-   - Email: `test@example.com`
-   - Senha: `password`
+## 🌍 Primeiros Passos na Aplicação
 
-3. **Ou criar novo usuário** clicando em "Cadastro"
+### 1. Acessar a Página Inicial
+Abra seu navegador: `http://127.0.0.1:8000`
 
----
+### 2. Explorar como Visitante
+- Veja o catálogo de artistas
+- Use os filtros para buscar e ordenar
+- Clique em um artista para ver detalhes
 
-## 📊 Estrutura do Banco de Dados
+### 3. Fazer Login
+- Clique em "Login" no canto superior direito
+- Use credenciais de teste:
+  - Email: `test@example.com`
+  - Senha: `password`
 
-```sql
--- Usuários
-SELECT * FROM users;
+### 4. Funcionalidades como Usuário Logado
+- Avaliar artistas com 5 estrelas
+- Criar novo artista
+- Editar artistas
+- Deletar artistas e avaliações
 
--- Artistas
-SELECT * FROM artists;
+### 5. Testar Funcionalidades
+- Busque um artista na barra de busca
+- Filtre por gênero
+- Ordene por melhores/piores avaliações
+- Atualize sua avaliação de um artista
+- Veja como a média de avaliações muda em tempo real
 
--- Avaliações com dados relacionados
-SELECT r.*, u.name as usuario, a.name as artista 
-FROM reviews r
-JOIN users u ON r.user_id = u.id
-JOIN artists a ON r.artist_id = a.id;
 
--- Média de avaliações por artista
-SELECT 
-    a.name, 
-    COUNT(r.id) as total_avaliacoes,
-    AVG(r.rating) as media
-FROM artists a
-LEFT JOIN reviews r ON a.id = r.artist_id
-GROUP BY a.id
-ORDER BY media DESC;
+
+## 📝 Limpar Cache e Logs
+
+Se encontrar comportamentos estranhos:
+
+```bash
+# Limpar todos os caches
+php artisan cache:clear
+php artisan config:clear
+php artisan view:clear
+
+# Ver logs de erro
+tail -f storage/logs/laravel.log
+
+# Limpar logs
+rm storage/logs/*.log
 ```
 
----
 
-## 🔐 Segurança
 
-- ✅ CSRF protection em todos os formulários
-- ✅ Hash de senhas com bcrypt
-- ✅ Validação de entrada no servidor
-- ✅ Autorização em ações destrutivas
-- ✅ SQL injection prevention (Eloquent ORM)
 
----
 
-## 📈 Performance
 
-- ✅ Eager loading de relacionamentos (`with()`)
-- ✅ Índices de banco de dados
-- ✅ Paginação de resultados (12 por página)
-- ✅ Query optimization com SelectRaw
+## �️ Explorando o Banco de Dados
 
----
+Você pode usar o **Tinker** do Laravel para consultar dados:
 
-## 🎯 Funcionalidades Adicionais (Não Obrigatórias)
+```bash
+php artisan tinker
+```
 
-- ✅ Ordenação dinâmica (4 opções)
-- ✅ Busca por texto em tempo real
-- ✅ Filtro por gênero
-- ✅ Preview de imagem antes de upload
-- ✅ Modais de confirmação
-- ✅ Flash messages de sucesso/erro
-- ✅ Responsividade completa
+Exemplos de comandos:
 
----
+```php
+# Listar todos os artistas
+App\Models\Artist::all();
 
-## 🚀 Deploy (Produção)
+# Contar avaliações
+App\Models\Review::count();
 
-### Para publicar em um servidor:
+# Ver artista com mais avaliações
+App\Models\Artist::withCount('reviews')->orderByDesc('reviews_count')->first();
 
-1. **Clonar repositório**
-2. **Instalar com `--no-dev`**
-   ```bash
-   composer install --no-dev
-   ```
+# Ver avaliação média de um artista
+App\Models\Artist::find(1)->averageRating();
 
-3. **Configurar `.env` com dados reais**
-   ```
-   APP_ENV=production
-   APP_DEBUG=false
-   DB_CONNECTION=mysql (ou seu DB)
-   ```
+# Listar todas as avaliações
+App\Models\Review::with('user', 'artist')->get();
 
-4. **Gerar chave e otimizar**
-   ```bash
-   php artisan key:generate
-   php artisan config:cache
-   php artisan route:cache
-   ```
+# Sair do Tinker
+exit
+```
 
-5. **Criar storage e dar permissões**
-   ```bash
-   php artisan storage:link
-   chmod -R 775 storage bootstrap/cache
-   ```
 
----
 
-## 📞 Suporte
+## 📚 Recursos Adicionais
 
-Se encontrar problemas:
+- **Laravel Docs:** https://laravel.com/docs
+- **PHP Manual:** https://www.php.net/
+- **MDN Web Docs:** https://developer.mozilla.org/
+- **Stack do Projeto:** Ver [DOCUMENTACAO.md](./DOCUMENTACAO.md)
+- **Visão Geral:** Ver [README.md](./README.md)
 
-1. **Verificar arquivo de log:**
-   ```bash
-   tail -f storage/logs/laravel.log
-   ```
 
-2. **Usar Tinker para debug:**
-   ```bash
-   php artisan tinker
-   # Testar queries, models, etc.
-   ```
 
-3. **Limpar cache:**
-   ```bash
-   php artisan cache:clear
-   php artisan config:clear
-   php artisan view:clear
-   ```
+## ✅ Resumo Rápido
 
----
+| Passo | Comando |
+|-|-|
+| 1 | `composer install` |
+| 2 | `copy .env.example .env` |
+| 3 | `php artisan key:generate` |
+| 4 | `touch database/database.sqlite` |
+| 5 | `php artisan migrate` |
+| 6 | `php artisan db:seed` |
+| 7 | `php artisan storage:link` |
+| 8 | `php artisan serve` |
+| 9 | Acesse `http://127.0.0.1:8000` |
 
-**Atualizado em:** 07/05/2026  
-**Versão:** 1.0 - Estável
+
