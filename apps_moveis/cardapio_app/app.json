@@ -1,0 +1,23 @@
+{
+  "expo": {
+    "name": "Cardapio App",
+    "slug": "cardapio-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#f7faf9"
+      }
+    },
+    "web": {
+      "bundler": "metro"
+    }
+  }
+}

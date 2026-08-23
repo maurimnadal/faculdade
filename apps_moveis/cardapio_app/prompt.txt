@@ -1,0 +1,81 @@
+Aqui está uma versão aprimorada, estruturada e detalhada do enunciado. Ela foi escrita especificamente para que qualquer IA (ou desenvolvedor) compreenda instantaneamente a arquitetura do projeto, os requisitos funcionais, o modelo de dados e as tecnologias que devem ser utilizadas.
+
+---
+
+## 📝 Enunciado do Projeto Acadêmico: App de Cardápio Escolar/Universitário
+
+### **Objetivo Geral**
+
+Desenvolver um aplicativo móvel multiplataforma focado na exibição e interação com o cardápio do refeitório institucional. O aplicativo deve ser intuitivo, seguro e baseado em regras de visualização temporal (semana atual e dia vigente).
+
+### **Stack Tecnológica Obrigatória**
+
+* **Framework Principal:** Expo (React Native)
+* **Linguagem:** JavaScript ou TypeScript
+* **Gerenciamento de Estado/Navegação:** React Navigation (Stack e Tab/Drawer para o menu de serviços)
+
+---
+
+### **Requisitos Funcionais (RF)**
+
+#### **RF01 - Tela de Login e Autenticação**
+
+* O aplicativo deve iniciar em uma tela de login protegida.
+* O usuário deve fornecer credenciais (Login e Senha) para acessar o sistema.
+* **Controle de Acesso:** O sistema deve diferenciar a experiência ou permissões com base no tipo de perfil obtido no login (`aluno` ou `servidor`).
+
+#### **RF02 - Menu Principal (Dashboard de Serviços)**
+
+* Após a autenticação, o usuário deve ser direcionado para uma tela de menu/dashboard.
+* O menu deve listar os serviços disponíveis, sendo o **Cardápio do Refeitório** a funcionalidade principal e obrigatória.
+
+#### **RF03 - Visualização Dinâmica do Cardápio**
+
+Ao acessar a opção de cardápio, o app deve:
+
+* **Filtro Temporal:** Filtrar e exibir automaticamente os cardápios correspondentes à **semana atual**, utilizando como referência a data do sistema operacional.
+* **Destaque Visual:** Identificar visualmente e destacar o dia atual (hoje) em relação aos outros dias da semana.
+* **Exibição dos Dados:** Mostrar claramente o tipo da refeição, a data e a lista de itens.
+
+#### **RF04 - Interação com o Cardápio**
+
+* **Favoritos:** Permitir que o usuário marque/desmarque um cardápio específico como favorito (armazenando essa preferência localmente ou no estado do app).
+* **Compartilhamento Externo:** Implementar a funcionalidade de compartilhar os dados de um cardápio específico para outros aplicativos (ex: WhatsApp, redes sociais), utilizando a API nativa de compartilhamento do dispositivo.
+
+---
+
+### **Modelo de Dados (Entidades Esperadas)**
+
+Para estruturar o backend (ou mock de dados), utilize os seguintes modelos:
+
+#### **1. Usuário (`User`)**
+
+```json
+{
+  "id": "string",
+  "login": "string",
+  "senha": "string",
+  "tipo": "servidor" | "aluno"
+}
+
+```
+
+#### **2. Cardápio (`Menu`)**
+
+```json
+{
+  "id": "string",
+  "data": "YYYY-MM-DD",
+  "tipoRefeicao": "Café da Manhã" | "Almoço" | "Jantar" | "Lanche",
+  "itens": ["Arroz", "Feijão", "Opção Vegana", "Sobremesa"]
+}
+
+```
+
+---
+
+### **Critérios de Aceitação Técnica**
+
+1. **Responsividade:** A interface deve se adaptar bem a diferentes tamanhos de tela (iOS e Android).
+2. **Manipulação de Datas:** Uso correto de bibliotecas de data (como `date-fns`, `moment.js` ou a API nativa `Date`) para calcular a semana corrente e destacar o dia de hoje.
+3. **Componentização:** Código limpo e dividido em componentes reutilizáveis (botões, cards de refeição, cabeçalhos).
