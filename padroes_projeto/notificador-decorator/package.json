@@ -1,0 +1,16 @@
+{
+  "name": "notificador-decorator",
+  "version": "1.0.0",
+  "description": "Refatoracao do modulo de notificacoes usando o padrao Decorator",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0",
+    "ts-node": "^10.9.2",
+    "@types/node": "^20.11.0"
+  }
+}
